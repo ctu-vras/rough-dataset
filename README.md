@@ -8,6 +8,8 @@
 ROUGH Dataset contains **several hours** of driving with <abbr title="~1 m, ~60 kg, cameras <0.5 m from ground">mid-sized robots</abbr> in challenging terrain.
 The ultimate goal is to provide recordings of traversals on (or through) **flexible natural obstacles** like **tall grass**, **hanging tree branches**, **mud**, **dense undergrowth** etc.
 
+![ROUGH Dataset Preview](docs/marv_promo.gif)
+
 Datasets like [RUGD](http://rugd.vision/), [BotanicGarden](https://github.com/robot-pesg/BotanicGarden) or [RELLIS-3D](https://www.unmannedlab.org/the-great-outdoors-dataset/) provide data mostly with the aim of training image/pointcloud segmentation networks or tuning SLAM algorithms.
 
 ROUGH aims directly at learning how to drive through the challenging terrain.
@@ -19,6 +21,8 @@ A great application for ROUGH is self-supervised training of PINNs (_Physics-Inf
 
 > [!CAUTION]
 > The dataset is still in preparation and will be submitted to an IEEE journal. Hopefully in Nov '24. Click 'Watch' on top of this page to get project updates.
+> 
+> In the meantime, have a look at the [sample data for MonoForce](https://drive.google.com/drive/folders/1vcZSr4BIv7rBXTcu7YkcbVsKCi5wU6Ci) which look similar to what will be available in ROUGH ([format documented here](https://github.com/ctu-vras/monoforce/blob/master/monoforce/docs/DATA.md)). The 3D kinematic and dynamic models of the robots are not yet available.
 
 ## Platforms
 
