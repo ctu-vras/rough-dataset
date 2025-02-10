@@ -6,4 +6,5 @@ for f in *.no_sensors.bag; do
 	sed -i 's/ /,/g' "${f}.fix.csv"
 	sed -i '1 s/^/#/' "${f}.fix.csv"
 	gpsbabel -t -i unicsv,fields=comment+date+time+comment+comment+comment+lat+lon+alt+pdop+hdop+vdop -f "${f}.fix.csv" -x simplify,relative,error=1 -o gpx -F "${f}.fix.gpx"
+	echo "Processed $f"
 done
