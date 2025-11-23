@@ -1,16 +1,25 @@
-out_format: '{name}.preproc{ext}'
+out_format: '{bag_base}.preproc{ext}'
 compression: lz4
 filters:
   - MergeInitialStaticTf: {}
   - RemovePasswordsFromParams: {}
-  - Drop:
-      include_topics:
+  - Remap:
+      "points_filtered_kontron": "points_filtered"
+      "imu/data_filtered": "imu_filtered/data"
+  - Topics:
+      exclude_topics:
         - /robot_bounding_box_debug
         - /robot_bounding_sphere_debug
         - /robot_model_for_bounding_box
         - /robot_model_for_bounding_sphere
         - /rosout
         - /rosout_agg
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
   - RemoveInvalidTF: { }
   - DeduplicateTF: { }
   - BlurFaces:

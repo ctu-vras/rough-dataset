@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+ <tabbed_widget name="Main Window" parent="main_window">
+  <Tab tab_name="tab1" containers="1">
+   <Container>
+    <DockSplitter sizes="0.5;0.5" count="2" orientation="-">
+     <DockArea name="...">
+      <plot style="Lines" mode="XYPlot" flip_y="false" flip_x="false">
+       <range bottom="-167.008910" right="87.028730" left="-4.020177" top="169.993800"/>
+       <limitY/>
+       <curve name="l[at1;on1]" color="#9467bd" curve_x="lat1" curve_y="lon1"/>
+       <curve name="[x1;y1]" color="#1ac938" curve_x="x1" curve_y="y1"/>
+       <curve name="/odom/pose/pose/position/[x;y]" color="#f14cc1" curve_x="/odom/pose/pose/position/x" curve_y="/odom/pose/pose/position/y"/>
+      </plot>
+     </DockArea>
+     <DockArea name="...">
+      <plot style="Lines" mode="XYPlot" flip_y="false" flip_x="false">
+       <range bottom="50.235154" right="14.914598" left="14.912151" top="50.235384"/>
+       <limitY/>
+       <curve name="/fix/l[atitude;ongitude]" color="#17becf" curve_x="/fix/longitude" curve_y="/fix/latitude"/>
+       <curve name="/gnss/septentrio/fix/l[atitude;ongitude]" color="#bcbd22" curve_x="/gnss/septentrio/fix/longitude" curve_y="/gnss/septentrio/fix/latitude"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab2" containers="1">
+   <Container>
+    <DockSplitter sizes="0.5;0.5" count="2" orientation="-">
+     <DockArea name="...">
+      <plot style="Dots" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-8.282350" right="121.912376" left="0.102494" top="3.576350"/>
+       <limitY/>
+       <curve name="/joint_states/front_left_wheel_steering_j/position" color="#1ac938"/>
+       <curve name="/joint_states/steering_wheel_j/position" color="#bcbd22">
+        <transform name="Scale/Offset" alias="/joint_states/steering_wheel_j/position[Scale/Offset]">
+         <options value_offset="0" value_scale="-0.001" time_offset="0.0"/>
+        </transform>
+       </curve>
+      </plot>
+     </DockArea>
+     <DockArea name="...">
+      <plot style="Dots" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-0.204612" right="121.907910" left="0.000190" top="0.408122"/>
+       <limitY/>
+       <curve name="/os_cloud_node/imu/angular_velocity/z" color="#bcbd22"/>
+       <curve name="/gnss/septentrio/azimuth_imu/angular_velocity/z" color="#6dff0e"/>
+       <curve name="/odom_2d/twist/twist/angular/z" color="#ff7f0e"/>
+       <curve name="/odom/twist/twist/angular/z" color="#9467bd"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab3" containers="1">
+   <Container>
+    <DockSplitter sizes="0.5;0.5" count="2" orientation="-">
+     <DockArea name="...">
+      <plot style="Dots" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-0.489984" right="122.241026" left="0.000000" top="4.888156"/>
+       <limitY/>
+       <curve name="/odom_2d/twist/twist/linear/x" color="#f14cc1"/>
+       <curve name="/gnss/septentrio/fix_detail/speed" color="#1f77b4"/>
+       <curve name="/fix_detail/speed" color="#d62728"/>
+       <curve name="/odom/twist/twist/linear/x" color="#17becf"/>
+      </plot>
+     </DockArea>
+     <DockArea name="...">
+      <plot style="Dots" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-0.208476" right="121.907910" left="0.102494" top="8.547520"/>
+       <limitY/>
+       <curve name="/joint_states/rear_left_wheel_j/velocity" color="#d62728"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab5" containers="1">
+   <Container>
+    <DockSplitter sizes="1" count="1" orientation="-">
+     <DockArea name="...">
+      <plot style="Dots" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-379.182979" right="122.241026" left="0.000190" top="193.522478"/>
+       <limitY/>
+       <curve name="/fix_detail/track" color="#1ac938">
+        <transform name="Scale/Offset" alias="/fix_detail/track[Scale/Offset]">
+         <options value_offset="-277" value_scale="1" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/gnss/septentrio/fix_detail/track" color="#ff7f0e">
+        <transform name="Scale/Offset" alias="/gnss/septentrio/fix_detail/track[Scale/Offset]">
+         <options value_offset="-277" value_scale="1" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/gnss/septentrio/azimuth/azimuth" color="#1ac938">
+        <transform name="Scale/Offset" alias="/gnss/septentrio/azimuth/azimuth[Scale/Offset]">
+         <options value_offset="-187" value_scale="-57.296" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/gnss/septentrio/azimuth_imu/orientation/yaw" color="#f14cc1">
+        <transform name="Scale/Offset" alias="/gnss/septentrio/azimuth_imu/orientation/yaw[Scale/Offset]">
+         <options value_offset="-187" value_scale="-57.296" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/gnss/septentrio/atteuler/heading" color="#9467bd">
+        <transform name="Scale/Offset" alias="/gnss/septentrio/atteuler/heading[Scale/Offset]">
+         <options value_offset="-187" value_scale="-1" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/odom_2d/pose/pose/orientation/yaw" color="#17becf">
+        <transform name="Scale/Offset" alias="/odom_2d/pose/pose/orientation/yaw[Scale/Offset]">
+         <options value_offset="0" value_scale="-57.296" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/odom/pose/pose/orientation/yaw" color="#bcbd22">
+        <transform name="Scale/Offset" alias="/odom/pose/pose/orientation/yaw[Scale/Offset]">
+         <options value_offset="0" value_scale="-57.296" time_offset="0.0"/>
+        </transform>
+       </curve>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab6" containers="1">
+   <Container>
+    <DockSplitter sizes="1" count="1" orientation="-">
+     <DockArea name="...">
+      <plot style="Dots" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-161.868259" right="121.867898" left="0.000190" top="4.303638"/>
+       <limitY/>
+       <curve name="/gnss/septentrio/azimuth/azimuth" color="#1f77b4">
+        <transform name="Derivative" alias="/gnss/septentrio/azimuth/azimuth[Derivative]">
+         <options lineEdit="0.2" radioChecked="radioCustom"/>
+        </transform>
+       </curve>
+       <curve name="/odom_2d/pose/pose/orientation/yaw" color="#f14cc1">
+        <transform name="Derivative" alias="/odom_2d/pose/pose/orientation/yaw[Derivative]">
+         <options lineEdit="0.2" radioChecked="radioActual"/>
+        </transform>
+       </curve>
+       <curve name="/odom/pose/pose/orientation/yaw" color="#bcbd22">
+        <transform name="Derivative" alias="/odom/pose/pose/orientation/yaw[Derivative]">
+         <options lineEdit="0.2" radioChecked="radioActual"/>
+        </transform>
+       </curve>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab7" containers="1">
+   <Container>
+    <DockSplitter sizes="0.500544;0.499456" count="2" orientation="-">
+     <DockArea name="...">
+      <plot style="Lines" mode="TimeSeries" flip_y="false" flip_x="false">
+       <range bottom="-65.275596" right="122.241026" left="0.000000" top="13.499422"/>
+       <limitY/>
+       <curve name="/odom/pose/pose/position/z" color="#1f77b4"/>
+       <curve name="/gnss/septentrio/fix/altitude" color="#d62728">
+        <transform name="Scale/Offset" alias="/gnss/septentrio/fix/altitude[Outlier Removal]">
+         <options value_offset="-300" value_scale="1" time_offset="0.0"/>
+        </transform>
+       </curve>
+       <curve name="/fix/altitude" color="#1ac938">
+        <transform name="Scale/Offset" alias="/fix/altitude[Scale/Offset]">
+         <options value_offset="-260" value_scale="1" time_offset="0.0"/>
+        </transform>
+       </curve>
+      </plot>
+     </DockArea>
+     <DockSplitter sizes="0.50231;0.49769" count="2" orientation="|">
+      <DockArea name="...">
+       <plot style="Lines" mode="TimeSeries" flip_y="false" flip_x="false">
+        <range bottom="-0.124095" right="121.867898" left="0.342512" top="0.198131"/>
+        <limitY/>
+        <curve name="/os_cloud_node/imu/data/orientation/pitch" color="#1ac938"/>
+        <curve name="/odom/pose/pose/orientation/pitch" color="#f14cc1"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot style="Lines" mode="TimeSeries" flip_y="false" flip_x="false">
+        <range bottom="-0.126034" right="121.902946" left="0.000190" top="0.324046"/>
+        <limitY/>
+        <curve name="/gnss/septentrio/atteuler/pitch" color="#9467bd">
+         <transform name="Scale/Offset" alias="/gnss/septentrio/atteuler/pitch[Scale/Offset]">
+          <options value_offset="0.0" value_scale="-0.017453" time_offset="0.0"/>
+         </transform>
+        </curve>
+        <curve name="/odom/pose/pose/orientation/roll" color="#17becf"/>
+        <curve name="/os_cloud_node/imu/data/orientation/roll" color="#ff7f0e"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="5"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <parameters delimiter="0" time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad MCAP"/>
+  <plugin ID="DataLoad ROS bags">
+   <use_header_stamp value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+   <boolean_strings_to_number value="true"/>
+   <remove_suffix_from_strings value="true"/>
+   <selected_topics value="/fix;/gnss/septentrio/fix;/imu/data;/imu/mag;/imu/mag_bias;/imu/mag_unbiased;/joint_states;/oak/imu/data;/odom_2d;/os_cloud_node/imu;/tf;/tf_static;/vehicle_imu/data_raw;odom;/gnss/septentrio/azimuth;/gnss/septentrio/azimuth_imu;/gnss/septentrio/atteuler;/fix_detail;/gnss/septentrio/fix_detail;/gnss/septentrio/raw/pvtcartesian;/gnss/septentrio/raw/pvtgeodetic"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="ROS Topic Subscriber">
+   <use_header_stamp value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+   <boolean_strings_to_number value="true"/>
+   <remove_suffix_from_strings value="true"/>
+   <selected_topics value="/oak/imu/data;/tf;/tf_static"/>
+  </plugin>
+  <plugin ID="UDP Server"/>
+  <plugin ID="WebSocket Server"/>
+  <plugin ID="ZMQ Subscriber"/>
+  <plugin ID="Fast Fourier Transform"/>
+  <plugin ID="Quaternion to RPY"/>
+  <plugin ID="Reactive Script Editor">
+   <library code="--[[ Helper function to create a series from arrays&#xa;&#xa; new_series: a series previously created with ScatterXY.new(name)&#xa; prefix:     prefix of the timeseries, before the index of the array&#xa; suffix_X:   suffix to complete the name of the series containing the X value. If [nil], use the index of the array.&#xa; suffix_Y:   suffix to complete the name of the series containing the Y value&#xa; timestamp:   usually the tracker_time variable&#xa;              &#xa; Example:&#xa; &#xa; Assuming we have multiple series in the form:&#xa; &#xa;   /trajectory/node.{X}/position/x&#xa;   /trajectory/node.{X}/position/y&#xa;   &#xa; where {N} is the index of the array (integer). We can create a reactive series from the array with:&#xa; &#xa;   new_series = ScatterXY.new(&quot;my_trajectory&quot;) &#xa;   CreateSeriesFromArray( new_series, &quot;/trajectory/node&quot;, &quot;position/x&quot;, &quot;position/y&quot;, tracker_time );&#xa;--]]&#xa;&#xa;function CreateSeriesFromArray( new_series, prefix, suffix_X, suffix_Y, timestamp )&#xa;  &#xa;  --- clear previous values&#xa;  new_series:clear()&#xa;  &#xa;  --- Append points to new_series&#xa;  index = 0&#xa;  while(true) do&#xa;&#xa;    x = index;&#xa;    -- if not nil, get the X coordinate from a series&#xa;    if suffix_X ~= nil then &#xa;      series_x = TimeseriesView.find( string.format( &quot;%s.%d/%s&quot;, prefix, index, suffix_X) )&#xa;      if series_x == nil then break end&#xa;      x = series_x:atTime(timestamp)&#x9; &#xa;    end&#xa;    &#xa;    series_y = TimeseriesView.find( string.format( &quot;%s.%d/%s&quot;, prefix, index, suffix_Y) )&#xa;    if series_y == nil then break end &#xa;    y = series_y:atTime(timestamp)&#xa;    &#xa;    new_series:push_back(x,y)&#xa;    index = index+1&#xa;  end&#xa;end&#xa;&#xa;--[[ Similar to the built-in function GetSeriesNames(), but select only the names with a give prefix. --]]&#xa;&#xa;function GetSeriesNamesByPrefix(prefix)&#xa;  -- GetSeriesNames(9 is a built-in function&#xa;  all_names = GetSeriesNames()&#xa;  filtered_names = {}&#xa;  for i, name in ipairs(all_names)  do&#xa;    -- check the prefix&#xa;    if name:find(prefix, 1, #prefix) then&#xa;      table.insert(filtered_names, name);&#xa;    end&#xa;  end&#xa;  return filtered_names&#xa;end&#xa;&#xa;--[[ Modify an existing series, applying offsets to all their X and Y values&#xa;&#xa; series: an existing timeseries, obtained with TimeseriesView.find(name)&#xa; delta_x: offset to apply to each x value&#xa; delta_y: offset to apply to each y value &#xa;  &#xa;--]]&#xa;&#xa;function ApplyOffsetInPlace(series, delta_x, delta_y)&#xa;  -- use C++ indices, not Lua indices&#xa;  for index=0, series:size()-1 do&#xa;    x,y = series:at(index)&#xa;    series:set(index, x + delta_x, y + delta_y)&#xa;  end&#xa;end&#xa;"/>
+   <scripts/>
+  </plugin>
+  <plugin ID="CSV Exporter"/>
+  <plugin ID="ROS /rosout Visualization"/>
+  <plugin ID="ROS Topic Re-Publisher"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations>
+  <snippet name="lon1">
+   <global>is_first = true
+first_value = 0</global>
+   <function>if (is_first) then
+  is_first = false
+  first_value = v1
+end
+
+return -(v1 - first_value)</function>
+   <linked_source>/gnss/septentrio/fix/longitude</linked_source>
+   <additional_sources>
+    <v1>/gnss/septentrio/raw/pvtcartesian/y</v1>
+   </additional_sources>
+  </snippet>
+  <snippet name="lat1">
+   <global>is_first = true
+first_value = 0</global>
+   <function>if (is_first) then
+  is_first = false
+  first_value = v1
+end
+
+return -(v1 - first_value)</function>
+   <linked_source>/gnss/septentrio/fix/latitude</linked_source>
+   <additional_sources>
+    <v1>/gnss/septentrio/raw/pvtcartesian/x</v1>
+   </additional_sources>
+  </snippet>
+  <snippet name="y1">
+   <global>is_first = true
+first_value = 0</global>
+   <function>if (is_first) then
+  is_first = false
+  first_value = value
+end
+
+return value - first_value</function>
+   <linked_source>/odom_2d/pose/pose/position/y</linked_source>
+  </snippet>
+  <snippet name="x1">
+   <global>is_first = true
+first_value = 0</global>
+   <function>if (is_first) then
+  is_first = false
+  first_value = value
+end
+
+return value - first_value</function>
+   <linked_source>/odom_2d/pose/pose/position/x</linked_source>
+  </snippet>
+ </customMathEquations>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+

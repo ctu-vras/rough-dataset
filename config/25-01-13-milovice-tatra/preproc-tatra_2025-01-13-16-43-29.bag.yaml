@@ -16,6 +16,12 @@ filters:
         - /robot_model_for_shadow_test
         - /rosout
         - /rosout_agg
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
   - EstimateJointStatesFromMotionModelAckermann:
       wheel_radius: 0.545
       wheel_separation: 4.32
