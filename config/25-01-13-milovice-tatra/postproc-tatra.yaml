@@ -1,0 +1,10 @@
+out_format: '{bag_base}.postproc{ext}'
+compression: lz4
+extra_bags: '{bag_base}.points_filtered{ext}'
+filters:
+  - Topics:
+      exclude_topics:
+        - points
+  - StampTwist:
+      source_topic: "cmd_vel"
+  - DeduplicateTF: {}

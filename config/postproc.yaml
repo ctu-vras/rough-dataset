@@ -1,0 +1,6 @@
+out_format: '{name}.postproc{ext}'
+compression: lz4
+filters:
+  - StampTwist:
+      source_topic: "/cmd_vel"
+  - DeduplicateTF: {}

@@ -1,0 +1,30 @@
+out_format: '{name}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf: {}
+  - RemovePasswordsFromParams: {}
+  - Remap:
+      "/points_filtered_kontron": "/points_filtered"
+  - Copy:
+      "/marv/cartesian_controller/cmd_vel": "/cmd_vel"
+      "/marv/cartesian_controller/odom": "/odom_2d"
+      "/marv/joint_states": "/joint_states"
+  - Drop:
+      include_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
+  - BlurFaces:
+      threshold: 0.065
+      scale: [960, 960]
+      mask_scale: 1.3
+      replacewith: blur
+      ellipse: true
+  - ComputeFixFromPVT:
+      source_topic_prefix: "/gnss/septentrio"
+      fix_topic: "/gnss/septentrio/fix"

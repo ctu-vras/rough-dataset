@@ -1,0 +1,21 @@
+out_format: '{name}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf: {}
+  - RemovePasswordsFromParams: {}
+  - Drop:
+      include_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
+  - BlurFaces:
+      threshold: 0.065
+      scale: [960, 960]
+      mask_scale: 1.3
+      replacewith: blur
+      ellipse: true

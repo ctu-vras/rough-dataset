@@ -1,0 +1,31 @@
+out_format: '{name}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf: {}
+  - RemovePasswordsFromParams: {}
+  - UpdateParams:
+      update:
+        parts_config:
+          has_top_box_lora_ant: False
+          has_top_box_l_wifi_ant: False
+          has_top_box_r_wifi_ant: False
+          has_rollcage: True
+        omnicam_sensors_calib:
+          transforms:
+            - [ 0.6, 0.1215, 0.02, 0.0, 0.0, 0.0, 1.0, rear_right_box, camera_front ]
+            - [ 0.3, 0.02, 0.02, 0.0, 0.0, 0.7071, -0.7071, rear_right_box, camera_right ]
+            - [ 0.02, 0.1215, 0.02, 0.0, 0.0, 1.0, 0.0, rear_right_box, camera_rear ]
+            - [ 0.3, 0.223, 0.02, 0.0, 0.0, 0.7071, 0.7071, rear_right_box, camera_left ]
+            - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_top ]
+  - Remap:
+      "/points_filtered_kontron": "/points_filtered"
+  - Drop:
+      include_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
