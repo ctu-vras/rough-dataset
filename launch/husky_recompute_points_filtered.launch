@@ -1,0 +1,83 @@
+<launch>
+  <arg name="bag"/>
+  <arg name="out_bag" value="$(eval bag.replace('.bag', '').replace('.preproc', '') + '.points_filtered.bag')"/>
+
+<!--  <rosparam command="load" file="$(arg bag).params"/>-->
+  <param name="/use_sim_time" value="true"/>
+
+  <node name="play" pkg="rosbag" type="play" args="--clock --delay=0.1 --rate=0.5 '$(arg bag)'" required="true" output="screen">
+    <remap from="points_filtered" to="points_filtered_orig" />
+  </node>
+
+  <node name="laser_nodelet_manager_nuc" pkg="nodelet" type="nodelet" args="manager" output="screen" required="true">
+    <param name="num_worker_threads" value="4"/>
+  </node>
+  
+  <include file="$(find cras_ouster_driver)/launch/os_cloud_node.launch">
+    <arg name="fields_to_publish" value="t,intensity,ambient,reflectivity"/>
+    <arg name="keep_organized" value="true"/>
+    <arg name="publish_invalid" value="false"/>
+    <arg name="max_range" value="50.0"/>
+    <arg name="nodelet_manager" value="laser_nodelet_manager_nuc"/>
+  </include>
+
+  <node pkg="nodelet" type="nodelet" name="pointcloud_motion_deskew" args="load PointCloud2Deskew laser_nodelet_manager_nuc" required="true">
+    <remap from="input_point_cloud" to="os_cloud_node/points"/>
+    <remap from="output_point_cloud" to="points_deskewed"/>
+    <param name="fixed_frame_for_laser" value="odom"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" args="load cras_laser_filters/cloud_to_cloud_filter_chain laser_nodelet_manager_nuc"
+        name="cloud_to_cloud_filtering" output="screen" respawn="true">
+    <remap from="cloud_in" to="points_deskewed"/>
+    <remap from="cloud_filtered" to="points_filtered"/>
+    <rosparam>
+      cloud_filter_chain:
+        -   name: RobotBodyFilter
+            type: robot_body_filter/RobotBodyFilterPointCloud2
+            params:
+              body_model/robot_description_param: 'robot_description'
+              frames/fixed: 'odom'
+              frames/sensor: 'os_lidar'
+              frames/output: 'os_lidar'
+              filter/keep_clouds_organized: True
+              #filter/model_pose_update_interval: 0.002  # do not get lower, the processing is then too slow
+              sensor/point_by_point: False
+              sensor/min_distance: 0.1
+              sensor/max_distance: 50.0
+              ignored_links/contains_test: [os_sensor, ouster_mount]
+              ignored_links/shadow_test: [os_sensor, ouster_mount, tower_cap, tower_camera_floor, tower, camera_0, camera_1, camera_2, camera_3]
+              body_model/inflation/scale: 1.1
+              body_model/inflation/padding: 0.01
+              body_model/inflation/shadow_test/scale: 1.1
+              body_model/inflation/shadow_test/padding: 0.02
+              body_model/inflation/per_link/padding: {}
+              filter/do_clipping: True
+              filter/do_shadow_test: True
+              filter/max_shadow_distance: 3.0
+              # Bounding sphere
+              bounding_sphere/compute: True
+              bounding_sphere/debug: False
+              bounding_sphere/marker: False
+              bounding_sphere/publish_cut_out_pointcloud: False
+              # Bounding box
+              bounding_box/compute: True
+              bounding_box/debug: False
+              bounding_box/marker: False
+              bounding_box/publish_cut_out_pointcloud: False
+              # Debug clouds/markers
+              debug/pcl/inside: False
+              debug/pcl/clip: False
+              debug/pcl/shadow: False
+              debug/marker/contains: False
+              debug/marker/shadow: False
+              debug/marker/bounding_sphere: False
+              debug/marker/bounding_box: False
+    </rosparam>
+  </node>
+  
+  <node name="rec" pkg="rosbag" type="record"
+        args="--lz4 -O '$(arg out_bag)' points_filtered robot_bounding_box robot_bounding_sphere"
+        output="screen" required="true">
+  </node>
+</launch>

@@ -1,0 +1,32 @@
+out_format: '{bag_base}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf: {}
+  - RemovePasswordsFromParams: {}
+  - Remap:
+      "imu_and_wheel_odom": "odom"
+  - Copy:
+      "husky/velocity_controller/cmd_vel": "cmd_vel"
+      "husky/velocity_controller/odom": "odom_2d"
+  - Topics:
+      exclude_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
+  - BlurFaces:
+      threshold: 0.065
+      scale: [960, 960]
+      mask_scale: 1.3
+      replacewith: blur
+      ellipse: true

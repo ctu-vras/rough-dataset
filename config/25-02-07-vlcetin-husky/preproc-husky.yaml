@@ -1,0 +1,90 @@
+out_format: '{bag_base}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf: {}
+  - RemovePasswordsFromParams: {}
+  - Remap:
+      "imu_and_wheel_odom": "odom"
+  - Copy:
+      "husky/velocity_controller/cmd_vel": "cmd_vel"
+      "husky/velocity_controller/odom": "odom_2d"
+  - Topics:
+      exclude_topics:
+        - /rosout
+        - /rosout_agg
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
+  - FixHeader:
+      include_topics:
+        - /camera_front_thermo/camera_info
+        - /camera_front_thermo/image8/compressed
+        - /camera_front_thermo/image8_norm/compressed
+        - /camera_front_thermo/image_heatmap/compressed
+        - /camera_front_thermo/image_raw
+        - /camera_front_thermo/max_temp
+        - /camera_front_thermo/min_temp
+      frame_id: boson_camera
+  - FixCameraCalibration:
+      calibrations:
+        "/camera_front_thermo/camera_info": camera_front_thermo.calib.yaml
+  - FixHeader:
+      include_topics:
+        - /camera_front/camera_info
+        - /camera_front/image_color/compressed
+      frame_id: camera_0_optical
+  - FixHeader:
+      include_topics:
+        - /camera_right/camera_info
+        - /camera_right/image_color/compressed
+      frame_id: camera_1_optical
+  - FixHeader:
+      include_topics:
+        - /camera_rear/camera_info
+        - /camera_rear/image_color/compressed
+      frame_id: camera_2_optical
+  - FixHeader:
+      include_topics:
+        - /camera_left/camera_info
+        - /camera_left/image_color/compressed
+      frame_id: camera_3_optical
+  - FixHeader:
+      include_topics:
+        - /oak/left/camera_info
+        - /oak/left/image_raw/compressed
+      frame_id: oak_left_camera_optical_frame
+  - FixHeader:
+      include_topics:
+        - /oak/right/camera_info
+        - /oak/right/image_raw/compressed
+      frame_id: oak_right_camera_optical_frame
+  - FixHeader:
+      include_topics:
+        - /oak/rgb/camera_info
+        - /oak/rgb/image_raw/compressed
+        - /oak/stereo/camera_info
+        - /oak/stereo/image_raw/compressedDepth
+      frame_id: oak_rgb_camera_optical_frame
+  - Transforms:
+      change:
+        camera_front:
+          oak:
+            frame_id: camera_0
+  # change thermo frame_id to boson_camera
+  # change basler frame_id from camera_0 -> camera_0_optical
+  # oak -> change frame_ids from ak_* to oak_*
+  # remove top plate from URDF
+  # add antennas to URDF
+  # connect oak in urdf (now it connects to nonexisting camera_front)
+  # recompute points_filtered
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
+#  - BlurFaces:
+#      threshold: 0.065
+#      scale: [960, 960]
+#      mask_scale: 1.3
+#      replacewith: blur
+#      ellipse: true
