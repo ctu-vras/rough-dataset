@@ -12,4 +12,10 @@ filters:
         - points
   - StampTwist:
       source_topic: "cmd_vel"
+  - DropMessagesFromCSV:
+      csv_file: "{bag_base}.invalid_imgs.csv"
+      additional_topics:
+        "camera_front/image_color/compressed": [ "camera_front/camera_info" ]
+        "camera_left/image_color/compressed": [ "camera_left/camera_info" ]
+        "camera_right/image_color/compressed": [ "camera_right/camera_info" ]
   - DeduplicateTF: {}
