@@ -1,0 +1,23 @@
+out_format: '{bag_base}.camera_masks{ext}'
+compression: bz2
+copy_params: False
+filters:
+  - Topics:
+      include_topics:
+        - camera_left/camera_info
+        - camera_right/camera_info
+        - camera_left/image_color/mask/compressed
+        - camera_right/image_color/mask/compressed
+  - StaticImageMask:
+      source_topic: camera_left/camera_info
+      mask_topics: [ "camera_left/mask/compressed" ]
+      mask_file: '{dirname}/camera_left-mask.pbm'
+      format_field: 'mono8; pbm compressed '
+  - StaticImageMask:
+      source_topic: camera_right/camera_info
+      mask_topics: [ "camera_right/mask/compressed" ]
+      mask_file: '{dirname}/camera_right-mask.pbm'
+      format_field: 'mono8; pbm compressed '
+  - Drop:
+      exclude_tags:
+        - generated

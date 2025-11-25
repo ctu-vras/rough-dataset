@@ -1,6 +1,8 @@
 out_format: '{bag_base}.postproc{ext}'
 compression: lz4
-extra_bags: '{bag_base}.points_filtered{ext}'
+extra_bags:
+  - '{bag_base}.points_filtered{ext}'
+  - '{bag_base}.camera_masks{ext}'
 filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'
