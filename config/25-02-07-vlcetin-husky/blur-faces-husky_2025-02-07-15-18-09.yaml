@@ -20,16 +20,16 @@ filters:
         - oak/left/image_raw/compressed
         - oak/right/image_raw/compressed
         - oak/rgb/image_raw/compressed
-      exclude_time_ranges: [[ 60, 70 ], [ 210, 217 ], [ 270, 275 ]]
+      exclude_time_ranges: [[145, 155], [360, 380], [445, 455]]
   - Drop:
       include_topics: ["camera_left/image_color/compressed"]
-      exclude_time_ranges: [[28, 33], [68, 75], [155, 172], [180, 198], [212, 225]]
+      exclude_time_ranges: [[13, 45], [80, 105]; [195, 210], [225, 235], [295, 330], [370, 415], [445, 455]]
   - Drop:
       include_topics: ["camera_rear/image_color/compressed"]
-      exclude_time_ranges: [[0, 55], [72, 100], [140, 160], [170, 185], [195, 217]]
+      exclude_time_ranges: [[0, 115], [130, 185], [215, 250], [310, 340], [375, 450]]
   - Drop:
       include_topics: ["camera_right/image_color/compressed"]
-      exclude_time_ranges: [[35, 46], [55, 62], [76, 88]]
+      exclude_time_ranges: [[0, 15], [27, 60], [140, 160], [175, 190], [220, 225], [320, 340], [410, 461]]
 
   - BlurFaces:
       threshold: 0.065

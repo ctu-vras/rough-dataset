@@ -28,13 +28,13 @@ filters:
         - oak/left/image_raw/anonymized_faces
         - oak/right/image_raw/anonymized_faces
         - oak/rgb/image_raw/anonymized_faces
-      exclude_time_ranges: [[ 60, 70 ], [ 210, 217 ], [ 270, 275 ]]
+      exclude_time_ranges: []
   - Drop:
       include_topics: ["camera_left/image_color/compressed", "camera_left/image_color/anonymized_faces"]
-      exclude_time_ranges: [[28, 33], [68, 75], [155, 172], [180, 198], [212, 225]]
+      exclude_time_ranges: []
   - Drop:
       include_topics: ["camera_rear/image_color/compressed", "camera_rear/image_color/anonymized_faces"]
-      exclude_time_ranges: [[0, 55], [72, 100], [140, 160], [170, 185], [195, 217]]
+      exclude_time_ranges: [[0, 30]]
   - Drop:
       include_topics: ["camera_right/image_color/compressed", "camera_right/image_color/anonymized_faces"]
-      exclude_time_ranges: [[35, 46], [55, 62], [76, 88]]
+      exclude_time_ranges: [[20, 50]]
