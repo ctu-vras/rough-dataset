@@ -73,18 +73,8 @@ filters:
         camera_front:
           oak:
             frame_id: camera_0
-  # change thermo frame_id to boson_camera
-  # change basler frame_id from camera_0 -> camera_0_optical
-  # oak -> change frame_ids from ak_* to oak_*
   # remove top plate from URDF
   # add antennas to URDF
-  # connect oak in urdf (now it connects to nonexisting camera_front)
-  # recompute points_filtered
   - RemoveInvalidTF: { }
   - DeduplicateTF: { }
-#  - BlurFaces:
-#      threshold: 0.065
-#      scale: [960, 960]
-#      mask_scale: 1.3
-#      replacewith: blur
-#      ellipse: true
+
