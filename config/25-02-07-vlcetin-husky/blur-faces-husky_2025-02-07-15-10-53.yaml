@@ -1,10 +1,15 @@
 out_format: '{bag_base}.blurred_faces{ext}'
 compression: lz4
+copy_params: False
 filters:
   - TopicTypes:
       include_types:
         - sensor_msgs/CompressedImage
         - sensor_msgs/Image
+  - Topics:
+      exclude_topics:
+        - camera_front_thermo/image_raw
+        - oak/stereo/image_raw/compressedDepth
 
   - Drop:
       include_topics:
@@ -12,7 +17,6 @@ filters:
         - camera_front_thermo/image8/compressed
         - camera_front_thermo/image8_norm/compressed
         - camera_front_thermo/image_heatmap/compressed
-        - camera_front_thermo/image_raw
         - oak/left/image_raw/compressed
         - oak/right/image_raw/compressed
         - oak/rgb/image_raw/compressed
