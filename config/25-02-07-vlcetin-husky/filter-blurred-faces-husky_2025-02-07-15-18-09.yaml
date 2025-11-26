@@ -31,7 +31,7 @@ filters:
       exclude_time_ranges: [[145, 155], [360, 380], [445, 455]]
   - Drop:
       include_topics: ["camera_left/image_color/compressed", "camera_left/image_color/anonymized_faces"]
-      exclude_time_ranges: [[13, 45], [80, 105]; [195, 210], [225, 235], [295, 330], [370, 415], [445, 455]]
+      exclude_time_ranges: [[13, 45], [80, 105], [195, 210], [225, 235], [295, 330], [370, 415], [445, 455]]
   - Drop:
       include_topics: ["camera_rear/image_color/compressed", "camera_rear/image_color/anonymized_faces"]
       exclude_time_ranges: [[0, 115], [130, 185], [215, 250], [310, 340], [375, 450]]
