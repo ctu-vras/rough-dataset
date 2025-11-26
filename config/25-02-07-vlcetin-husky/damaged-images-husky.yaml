@@ -1,0 +1,13 @@
+out_format: '/tmp/{bag_base}.damaged_images{ext}'
+copy_params: False
+filters:
+  - DetectDamagedBaslerImages:
+      include_topics:
+        - camera_front/image_color/compressed
+        - camera_left/image_color/compressed
+        - camera_rear/image_color/compressed
+        - camera_right/image_color/compressed
+      drop_damaged: False
+      output_csv: "{bag_base}.invalid_imgs.csv"
+      output_folder: "{bag_base}/invalid_imgs"
+  - Drop: {}

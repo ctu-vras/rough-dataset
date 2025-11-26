@@ -11,12 +11,12 @@ filters:
   - StaticImageMask:
       source_topic: camera_left/camera_info
       mask_topics: [ "camera_left/mask/compressed" ]
-      mask_file: '{dirname}/camera_left-mask.pbm'
+      mask_file: '{dirname}/camera_left.mask.pbm'
       format_field: 'mono8; pbm compressed '
   - StaticImageMask:
       source_topic: camera_right/camera_info
       mask_topics: [ "camera_right/mask/compressed" ]
-      mask_file: '{dirname}/camera_right-mask.pbm'
+      mask_file: '{dirname}/camera_right.mask.pbm'
       format_field: 'mono8; pbm compressed '
   - Drop:
       exclude_tags:
