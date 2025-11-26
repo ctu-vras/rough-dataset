@@ -31,7 +31,7 @@ filters:
       exclude_time_ranges: [[40, 95], [105, 115], [205, 225], [300, 310], [370, 385], [410, 425], [470, 490], [500, 510], [520, 540], [575, 600]]
   - Drop:
       include_topics: ["camera_left/image_color/compressed", "camera_left/image_color/anonymized_faces"]
-      exclude_time_ranges: [[0, 70], [110, 125], [150, 165], [205, 250], [265, 310], [320, 340], [370, 285], [410, 425], [490], [520, 540], [585, 600]]
+      exclude_time_ranges: [[0, 70], [110, 125], [150, 165], [205, 250], [265, 310], [320, 340], [370, 285], [410, 425], [490, 540], [585, 600]]
   - Drop:
       include_topics: ["camera_rear/image_color/compressed", "camera_rear/image_color/anonymized_faces"]
       exclude_time_ranges: [[15, 100], [120, 325], [335, 440], [485, 555], [590, 619]]
