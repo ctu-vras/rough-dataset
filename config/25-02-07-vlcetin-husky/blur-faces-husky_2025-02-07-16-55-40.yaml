@@ -37,3 +37,8 @@ filters:
       mask_scale: 1.3
       replacewith: blur
       ellipse: true
+  
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]

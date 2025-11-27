@@ -38,3 +38,8 @@ filters:
   - Drop:
       include_topics: ["camera_right/image_color/compressed", "camera_right/image_color/anonymized_faces"]
       exclude_time_ranges: [[5, 40], [95, 110], [125, 155], [215, 235], [290, 340]]
+  
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]
