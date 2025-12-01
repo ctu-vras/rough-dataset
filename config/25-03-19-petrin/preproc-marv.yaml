@@ -1,0 +1,67 @@
+out_format: '{bag_base}.preproc2{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf:
+      add_tags: ["copied_tf"]
+  - CopyFirstTfToBagStart:
+      add_tags: ["copied_tf"]
+  # Make sure we have TFs also for images that have stamps slightly before the start of the bag
+  - FixHeader:
+      include_tags: ["copied_tf"]
+      stamp_offset: -2.0
+  # marv_2025-03-19-15-36-49.bag has a bad static TF, no idea why
+  - Transforms:
+      include_topics: ["/tf_static"]
+      include_tags: ['bag_base:marv_2025-03-19-15-36-49']
+      change:
+        "oak-d-base-frame":
+          oak:
+            frame_id: camera_front
+            translation:
+              x: 0.000000
+              y: 0.000000
+              z: 0.100000
+            rotation:
+              x: 0.000000
+              y: 0.069943
+              z: 0.000000
+              w: 0.997551
+  - RemovePasswordsFromParams: {}
+  - Remap:
+      "/points_filtered_kontron": "/points_filtered"
+  - Copy:
+      "/marv/cartesian_controller/cmd_vel": "/cmd_vel"
+      "/marv/cartesian_controller/odom": "/odom_2d"
+      "/marv/joint_states": "/joint_states"
+  - Topics:
+      exclude_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  # One camera image and its camera info have a weird timestamp, 17.5822... We fix it here
+  - FixHeader:
+      include_topics:
+        - /camera_rear/camera_info
+        - /camera_rear/image_color/compressed
+      include_time_ranges:
+        - [1728130171.4111728, 1728130171.4111730]
+        - [1728130171.5694863, 1728130171.5694865]
+      stamp_offset: 1728130153.792931074
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
+  - Deduplicate:
+      ignore_seq: True
+      include_topics:
+        - /camera_front_thermo/camera_info
+  - FixCameraCalibration:
+      calibrations:
+        "/camera_front_thermo/camera_info": camera_front_thermo.calib.yaml
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
