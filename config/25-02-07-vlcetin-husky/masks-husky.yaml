@@ -16,31 +16,73 @@ filters:
         - camera_right/image_color/mask/compressed
         - oak/left/image_raw/compressed
         - oak/right/image_raw/compressed
+
   - StaticImageMask:
       source_topic: camera_front/camera_info
       mask_topics: [ "camera_front/mask/compressed" ]
       mask_file: '{dirname}/camera_front.mask.pbm'
       format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738937453.0, 1738943552.52]]
+  - StaticImageMask:
+      source_topic: camera_front/camera_info
+      mask_topics: [ "camera_front/mask/compressed" ]
+      mask_file: '{dirname}/camera_front-loose.mask.pbm'
+      format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738943552.521, 1738945372.0]]
+
   - StaticImageMask:
       source_topic: camera_left/camera_info
       mask_topics: [ "camera_left/mask/compressed" ]
       mask_file: '{dirname}/camera_left.mask.pbm'
       format_field: 'mono8; pbm compressed '
+      include_time_ranges:
+        - [1738937453.0, 1738937479.076]
+        - [1738938531.001, 1738943552.52]
+  - StaticImageMask:
+      source_topic: camera_left/camera_info
+      mask_topics: [ "camera_left/mask/compressed" ]
+      mask_file: '{dirname}/camera_left-ziptie.mask.pbm'
+      format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738937479.077, 1738938531.0]]
+  - StaticImageMask:
+      source_topic: camera_left/camera_info
+      mask_topics: [ "camera_left/mask/compressed" ]
+      mask_file: '{dirname}/camera_left-loose.mask.pbm'
+      format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738943552.521, 1738945372.0]]
+
   - StaticImageMask:
       source_topic: camera_rear/camera_info
       mask_topics: [ "camera_rear/mask/compressed" ]
       mask_file: '{dirname}/camera_rear.mask.pbm'
       format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738937453.0, 1738943552.52]]
+  - StaticImageMask:
+      source_topic: camera_rear/camera_info
+      mask_topics: [ "camera_rear/mask/compressed" ]
+      mask_file: '{dirname}/camera_rear-loose.mask.pbm'
+      format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738943552.521, 1738945372.0]]
+
   - StaticImageMask:
       source_topic: camera_right/camera_info
       mask_topics: [ "camera_right/mask/compressed" ]
       mask_file: '{dirname}/camera_right.mask.pbm'
       format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738937453.0, 1738943552.52]]
+  - StaticImageMask:
+      source_topic: camera_right/camera_info
+      mask_topics: [ "camera_right/mask/compressed" ]
+      mask_file: '{dirname}/camera_right-loose.mask.pbm'
+      format_field: 'mono8; pbm compressed '
+      include_time_ranges: [[1738943552.521, 1738945372.0]]
+
   - StaticImageMask:
       source_topic: oak/left/camera_info
       mask_topics: [ "oak/left/mask/compressed" ]
       mask_file: '{dirname}/oak_left.mask.pbm'
       format_field: 'mono8; pbm compressed '
+
   - StaticImageMask:
       source_topic: oak/right/camera_info
       mask_topics: [ "oak/right/mask/compressed" ]
