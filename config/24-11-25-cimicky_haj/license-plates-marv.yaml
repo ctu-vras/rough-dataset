@@ -1,0 +1,20 @@
+out_format: '{bag_base}.license_plates_blurred{ext}'
+copy_params: False
+compression: lz4
+extra_bags:
+  - '{bag_base}.license_plates_annotations{ext}'
+filters:
+  - Topics:
+      include_topics:
+        - "camera_left/image_color/compressed"
+        - "camera_left/image_color/compressed/parameter_updates"
+        - "camera_left/image_color/anonymized_plates"
+  - BlurDetections:
+      image_topic: camera_left/image_color/compressed
+      detections_topic: camera_left/image_color/anonymized_plates
+      bbox_scale: 1.25
+      blur_factor: 6
+      detection_receive_stamp_from_image: True
+  - Drop:
+      include_topics:
+        - "camera_left/image_color/compressed/parameter_updates"

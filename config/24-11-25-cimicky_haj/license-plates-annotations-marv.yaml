@@ -1,0 +1,10 @@
+out_format: '{bag_base}.license_plates_annotations{ext}'
+copy_params: False
+compression: bz2
+filters:
+  - Topics:
+      include_topics: ["nonexistent"]  # workaround for not being able to specify dropping all messages
+  - AnnotationsToDetection2DArray:
+      topic: camera_left/image_color/anonymized_plates
+      annotations_file: "{bag_base}-camera_left-plates.xml"
+      frame_id: pylon_camera_left

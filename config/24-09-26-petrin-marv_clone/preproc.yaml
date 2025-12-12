@@ -1,8 +1,14 @@
 out_format: '{bag_base}.preproc{ext}'
 compression: lz4
 filters:
-  - MergeInitialStaticTf: {}
-  - RemovePasswordsFromParams: {}
+  - MergeInitialStaticTf:
+      add_tags: [ "copied_tf" ]
+  - CopyFirstTfToBagStart:
+      add_tags: [ "copied_tf" ]
+  # Make sure we have TFs also for images that have stamps slightly before the start of the bag
+  - FixHeader:
+      include_tags: [ "copied_tf" ]
+      stamp_offset: -2.0
   - Topics:
       exclude_topics:
         - /robot_bounding_box_debug
@@ -19,9 +25,3 @@ filters:
         - imu/mag_unbiased
   - RemoveInvalidTF: { }
   - DeduplicateTF: { }
-  - BlurFaces:
-      threshold: 0.065
-      scale: [960, 960]
-      mask_scale: 1.3
-      replacewith: blur
-      ellipse: true
