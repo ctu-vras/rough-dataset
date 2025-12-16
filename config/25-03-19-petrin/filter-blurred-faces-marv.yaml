@@ -89,7 +89,7 @@ filters:
   - Drop:
       include_tags: *bag3
       include_topics: *left_topics
-      exclude_time_ranges: [[0, 35], [70, 100]. [150, 200], [245, 550], [660, 730]]
+      exclude_time_ranges: [[0, 35], [70, 100], [150, 200], [245, 550], [660, 730]]
   - Drop:
       include_tags: *bag3
       include_topics: *rear_topics
