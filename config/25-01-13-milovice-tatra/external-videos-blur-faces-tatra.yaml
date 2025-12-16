@@ -1,0 +1,11 @@
+out_format: '{bag_base}.external_cams_blurred{ext}'
+copy_params: False
+compression: lz4
+filters:
+  - Drop:
+      include_topics:
+        - /external_cams/cam_0/compressed
+      include_time_ranges:
+        - [1736783030, 1736783096]
+        - [1736783694, 1736783733]
+        - [1736784004, 1736784028]

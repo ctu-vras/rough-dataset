@@ -1,0 +1,12 @@
+out_format: '{bag_base}.external_cams_blurred{ext}'
+copy_params: False
+compression: lz4
+filters:
+  - BlurDetections:
+      image_topic: /external_cams/cam_0/compressed
+      detections_topic: /external_cams/cam_0/faces
+      bbox_scale: 1.25
+      blur_factor: 6
+      detection_receive_stamp_from_image: True
+      approximate_sync_threshold: 0.2
+      ellipse: True
