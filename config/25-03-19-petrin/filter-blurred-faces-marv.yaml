@@ -1,0 +1,204 @@
+out_format: '{bag_base}.blurred_faces{ext}'
+compression: lz4
+copy_params: False
+filters:
+  - TopicTypes:
+      include_types:
+        - sensor_msgs/CompressedImage
+        - sensor_msgs/Image
+        - vision_msgs/Detection2DArray
+  - Topics:
+      exclude_topics:
+        - camera_front_thermo/image_raw
+        - oak/stereo/image_raw/compressedDepth
+        
+    # marv_2025-03-19-14-41-19
+  - Drop:
+      include_tags: &bag1
+        - bag_base:marv_2025-03-19-14-41-19
+      include_topics: &front_topics
+        - camera_front/image_color/compressed
+        - camera_fisheye_front/image_color/compressed
+        - camera_front_thermo/image8/compressed
+        - camera_front_thermo/image8_norm/compressed
+        - camera_front_thermo/image_heatmap/compressed
+        - oak/left/image_raw/compressed
+        - oak/right/image_raw/compressed
+        - oak/rgb/image_raw/compressed
+        - camera_front/image_color/anonymized_faces
+        - camera_fisheye_front/image_color/anonymized_faces
+        - camera_front_thermo/image8/anonymized_faces
+        - camera_front_thermo/image8_norm/anonymized_faces
+        - camera_front_thermo/image_heatmap/anonymized_faces
+        - oak/left/image_raw/anonymized_faces
+        - oak/right/image_raw/anonymized_faces
+        - oak/rgb/image_raw/anonymized_faces
+      exclude_time_ranges: []
+  - Drop:
+      include_tags: *bag1
+      include_topics: &left_topics
+        - camera_left/image_color/compressed
+        - camera_left/image_color/anonymized_faces
+      exclude_time_ranges: [[85, 95]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &rear_topics
+        - camera_rear/image_color/compressed
+        - camera_fisheye_rear/image_color/compressed
+        - camera_rear/image_color/anonymized_faces
+        - camera_fisheye_rear/image_color/anonymized_faces
+      exclude_time_ranges: [[0, 173]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &right_topics
+        - camera_right/image_color/compressed
+        - camera_right/image_color/anonymized_faces
+      exclude_time_ranges: [[0, 25], [110, 140]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &up_topics
+        - camera_up/image_color/compressed
+        - camera_up/image_color/anonymized_faces
+      exclude_time_ranges: [[0, 15]]
+
+  # marv_2025-03-19-14-45-10
+  - Drop:
+      include_tags: &bag2
+        - bag_base:marv_2025-03-19-14-45-10
+      include_topics: *front_topics
+      exclude_time_ranges: []
+  - Drop:
+      include_tags: *bag2
+      include_topics: *left_topics
+      exclude_time_ranges: [[85, 115]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 20], [90, 115]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *right_topics
+      exclude_time_ranges: []
+
+  # marv_2025-03-19-14-47-44
+  - Drop:
+      include_tags: &bag3
+        - bag_base:marv_2025-03-19-14-47-44
+      include_topics: *front_topics
+      exclude_time_ranges: [[55, 180], [200, 420], [450, 480], [500, 550], [660, 730]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *left_topics
+      exclude_time_ranges: [[0, 35], [70, 100]. [150, 200], [245, 550], [660, 730]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *rear_topics
+      exclude_time_ranges: [[10, 35], [120, 255], [275, 350], [470, 500], [530, 600]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *right_topics
+      exclude_time_ranges: [[55, 80], [100, 150], [175, 295], [315, 370], [400, 450], [480, 600]]
+  
+  # marv_2025-03-19-15-03-51
+  - Drop:
+      include_tags: &bag4
+        - bag_base:marv_2025-03-19-15-03-51
+      include_topics: *front_topics
+      exclude_time_ranges: [[0, 20], [60, 80], [370, 400], [505, 530], [550, 570], [680, 710], [790, 815], [915, 922]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *left_topics
+      exclude_time_ranges: [[10, 30], [45, 110], [130, 170], [240, 300], [380, 400], [510, 530], [790, 815], [880, 900]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *rear_topics
+      exclude_time_ranges: [[25, 160], [170, 180], [235, 250], [290, 305], [330, 365], [390, 500], [525, 550], [565, 640], [700, 740], [800, 830], [870, 922]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *right_topics
+      exclude_time_ranges: [[55, 80], [100, 130], [220, 245], [330, 365], [440, 455], [550, 570], [605, 630], [680, 720], [870, 890], [905, 922]]
+  
+  # marv_2025-03-19-15-22-35
+  - Drop:
+      include_tags: &bag5
+        - bag_base:marv_2025-03-19-15-22-35
+      include_topics: *front_topics
+      exclude_time_ranges: []
+  - Drop:
+      include_tags: *bag5
+      include_topics: *left_topics
+      exclude_time_ranges: [[0, 25]]
+  - Drop:
+      include_tags: *bag5
+      include_topics: *rear_topics
+      exclude_time_ranges: [[10, 60]]
+  - Drop:
+      include_tags: *bag5
+      include_topics: *up_topics
+      exclude_time_ranges: [[0, 50]]
+  
+  # marv_2025-03-19-15-24-35
+  - Drop:
+      include_tags: &bag6
+        - bag_base:marv_2025-03-19-15-24-35
+      include_topics: *front_topics
+      exclude_time_ranges: [[15, 35], [45, 55], [75, 85], [105, 120], [220, 245]]
+  - Drop:
+      include_tags: *bag6
+      include_topics: *left_topics
+      exclude_time_ranges: [[25, 50], [95, 120], [220, 270], [325, 420]]
+  - Drop:
+      include_tags: *bag6
+      include_topics: *rear_topics
+      exclude_time_ranges: [[25, 60], [85, 100], [115, 140], [170, 210], [220, 250], [260, 420]]
+  - Drop:
+      include_tags: *bag6
+      include_topics: *right_topics
+      exclude_time_ranges: [[15, 45], [185, 195], [220, 245], [310, 325]]
+  - Drop:
+      include_tags: *bag6
+      include_topics: *up_topics
+      exclude_time_ranges: [[410, 430]]
+  
+  # marv_2025-03-19-15-33-00
+  - Drop:
+      include_tags: &bag7
+        - bag_base:marv_2025-03-19-15-33-00
+      include_topics: *front_topics
+      exclude_time_ranges: [[85, 112]]
+  - Drop:
+      include_tags: *bag7
+      include_topics: *left_topics
+      exclude_time_ranges: [[0, 10], [20, 112]]
+  - Drop:
+      include_tags: *bag7
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 112]]
+  - Drop:
+      include_tags: *bag7
+      include_topics: *right_topics
+      exclude_time_ranges: [[20, 60]]
+
+  # marv_2025-03-19-15-36-49
+  - Drop:
+      include_tags: &bag8
+        - bag_base:marv_2025-03-19-15-36-49
+      include_topics: *front_topics
+      exclude_time_ranges: [[270, 340], [420, 440], [585, 605], [655, 675], [740, 765]]
+  - Drop:
+      include_tags: *bag8
+      include_topics: *left_topics
+      exclude_time_ranges: [[230, 270], [350, 375], [420, 520], [590, 620], [655, 675], [740, 765]]
+  - Drop:
+      include_tags: *bag8
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 270], [300, 765]]
+  - Drop:
+      include_tags: *bag8
+      include_topics: *right_topics
+      exclude_time_ranges: [[75, 100], [270, 320], [405, 420], [530, 560], [610, 710], [740, 765]]
+        
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]
