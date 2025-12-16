@@ -65,6 +65,10 @@ filters:
       include_tags: *bag2
       include_topics: *right_topics
       exclude_time_ranges: []
+  - Drop:
+      include_tags: *bag2
+      include_topics: *up_topics
+      exclude_time_ranges: []
 
   # marv_2025-03-19-14-47-44
   - Drop:
@@ -84,6 +88,10 @@ filters:
       include_tags: *bag3
       include_topics: *right_topics
       exclude_time_ranges: [[55, 80], [100, 150], [175, 295], [315, 370], [400, 450], [480, 600]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *up_topics
+      exclude_time_ranges: []
   
   # marv_2025-03-19-15-03-51
   - Drop:
@@ -103,6 +111,10 @@ filters:
       include_tags: *bag4
       include_topics: *right_topics
       exclude_time_ranges: [[55, 80], [100, 130], [220, 245], [330, 365], [440, 455], [550, 570], [605, 630], [680, 720], [870, 890], [905, 922]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *up_topics
+      exclude_time_ranges: []
   
   # marv_2025-03-19-15-22-35
   - Drop:
@@ -118,6 +130,10 @@ filters:
       include_tags: *bag5
       include_topics: *rear_topics
       exclude_time_ranges: [[10, 60]]
+  - Drop:
+      include_tags: *bag5
+      include_topics: *right_topics
+      exclude_time_ranges: []
   - Drop:
       include_tags: *bag5
       include_topics: *up_topics
@@ -164,6 +180,10 @@ filters:
       include_tags: *bag7
       include_topics: *right_topics
       exclude_time_ranges: [[20, 60]]
+  - Drop:
+      include_tags: *bag7
+      include_topics: *up_topics
+      exclude_time_ranges: []
 
   # marv_2025-03-19-15-36-49
   - Drop:
@@ -183,6 +203,10 @@ filters:
       include_tags: *bag8
       include_topics: *right_topics
       exclude_time_ranges: [[75, 100], [270, 320], [405, 420], [530, 560], [610, 710], [740, 765]]
+  - Drop:
+      include_tags: *bag8
+      include_topics: *up_topics
+      exclude_time_ranges: []
   
   - BlurFaces:
       threshold: 0.065
