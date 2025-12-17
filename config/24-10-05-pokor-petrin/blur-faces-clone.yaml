@@ -1,0 +1,144 @@
+out_format: '{bag_base}.blurred_faces{ext}'
+compression: lz4
+copy_params: False
+filters:
+  - TopicTypes:
+      include_types:
+        - sensor_msgs/CompressedImage
+        - sensor_msgs/Image
+  - Topics:
+      exclude_topics:
+        - oak/stereo/image_raw/compressedDepth
+        
+  # ugv_2024-10-05-15-40-41
+  - Drop:
+      include_tags: &bag1
+        - bag_base:ugv_2024-10-05-15-40-41
+      include_topics: &front_topics
+        - camera_front/image_color/compressed
+        - oak/rgb/image_raw/compressed
+      exclude_time_ranges: [[0, 85], [100, 180]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &left_topics
+        - camera_left/image_color/compressed
+      exclude_time_ranges: [[0, 85]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &rear_topics
+        - camera_rear/image_color/compressed
+      exclude_time_ranges: [[0, 275], [330, 383]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &right_topics
+        - camera_right/image_color/compressed
+      exclude_time_ranges: [[0, 85], [95, 180], [230, 260], [320, 360]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &up_topics
+        - camera_up/image_color/compressed
+      exclude_time_ranges: []
+
+  # ugv_2024-10-05-15-48-31
+  - Drop:
+      include_tags: &bag2
+        - bag_base:ugv_2024-10-05-15-48-31
+      include_topics: *front_topics
+      exclude_time_ranges: [[60, 110]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *left_topics
+      exclude_time_ranges: [[75, 100]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 80], [115, 177]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *right_topics
+      exclude_time_ranges: [[90, 120]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *up_topics
+      exclude_time_ranges: []
+
+  # ugv_2024-10-05-15-58-52
+  - Drop:
+      include_tags: &bag3
+        - bag_base:ugv_2024-10-05-15-58-52
+      include_topics: *front_topics
+      exclude_time_ranges: [[240, 270]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *left_topics
+      exclude_time_ranges: [[0, 20], [250, 270], [290, 350], [460, 480]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 30], [290, 522]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *right_topics
+      exclude_time_ranges: [[300, 335], [430, 450]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *up_topics
+      exclude_time_ranges: [[510, 522]]
+  
+  # ugv_2024-10-05-16-08-30
+  - Drop:
+      include_tags: &bag4
+        - bag_base:ugv_2024-10-05-16-08-30
+      include_topics: *front_topics
+      exclude_time_ranges: [[310, 400], [550, 570], [600, 650], [880, 923]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *left_topics
+      exclude_time_ranges: [[0, 30], [90, 250], [310, 400], [595, 620]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 260], [350, 470], [520, 800], [860, 923]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *right_topics
+      exclude_time_ranges: [[565, 575], [610, 665], [865, 923]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *up_topics
+      exclude_time_ranges: []
+  
+  # ugv_2024-10-05-16-24-48
+  - Drop:
+      include_tags: &bag5
+        - bag_base:ugv_2024-10-05-16-24-48
+      include_topics: *front_topics
+      exclude_time_ranges: [[0, 30]]
+  - Drop:
+      include_tags: *bag5
+      include_topics: *left_topics
+      exclude_time_ranges: []
+  - Drop:
+      include_tags: *bag5
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 114]]
+  - Drop:
+      include_tags: *bag5
+      include_topics: *right_topics
+      exclude_time_ranges: [[0, 114]]
+  - Drop:
+      include_tags: *bag5
+      include_topics: *up_topics
+      exclude_time_ranges: []
+  
+  - BlurFaces:
+      threshold: 0.065
+      scale: [ 960, 960 ]
+      mask_scale: 1.3
+      replacewith: blur
+      ellipse: true
+  
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]
