@@ -25,7 +25,7 @@ filters:
       include_topics: &rear_topics
         - camera_rear/image_color/compressed
         - camera_fisheye_rear/image_color/compressed
-      exclude_time_ranges: [ 0, 270], [310, 360], [540, 800], [820, 890]]
+      exclude_time_ranges: [[0, 270], [310, 360], [540, 800], [820, 890]]
   - Drop:
       include_tags: *bag1
       include_topics: &right_topics

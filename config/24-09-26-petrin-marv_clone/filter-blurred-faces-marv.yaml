@@ -1,0 +1,74 @@
+out_format: '{bag_base}.blurred_faces{ext}'
+compression: lz4
+copy_params: False
+filters:
+  - TopicTypes:
+      include_types:
+        - sensor_msgs/CompressedImage
+        - sensor_msgs/Image
+        - vision_msgs/Detection2DArray
+
+  # marv_2024-09-26-13-46-51
+  - Drop:
+      include_tags: &bag1
+        - bag_base:marv_2024-09-26-13-46-51
+      include_topics: &front_topics
+        - camera_front/image_color/compressed
+        - camera_fisheye_front/image_color/compressed
+        - camera_front/image_color/anonymized_faces
+        - camera_fisheye_front/image_color/anonymized_faces
+      exclude_time_ranges: [[60, 85], [185, 447]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &left_topics
+        - camera_left/image_color/compressed
+        - camera_left/image_color/anonymized_faces
+      exclude_time_ranges: [[70, 170], [400, 435]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &rear_topics
+        - camera_rear/image_color/compressed
+        - camera_fisheye_rear/image_color/compressed
+        - camera_rear/image_color/anonymized_faces
+        - camera_fisheye_rear/image_color/anonymized_faces
+      exclude_time_ranges: [[0, 60], [70, 180], [425, 447]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &right_topics
+        - camera_right/image_color/compressed
+        - camera_right/image_color/anonymized_faces
+      exclude_time_ranges: [[50, 85], [170, 400], [420, 447]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &up_topics
+        - camera_up/image_color/compressed
+        - camera_up/image_color/anonymized_faces
+      exclude_time_ranges: [[230, 420]]
+
+  # marv_2024-09-26-13-54-43
+  - Drop:
+      include_tags: &bag2
+        - bag_base:marv_2024-09-26-13-54-43
+      include_topics: *front_topics
+      exclude_time_ranges: [[0, 75], [120, 145], [220, 410], [465, 620], [700, 950], [1060, 1150], [1230, 1270], [1350, 1400], [1750, 1800], [2020, 2035]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *left_topics
+      exclude_time_ranges: [[35, 115], [140, 200], [225, 620], [715, 1400], [1500, 1520], [1600, 1650], [1780, 2241]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *rear_topics
+      exclude_time_ranges: [[20, 465], [520, 620], [690, 2241]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *right_topics
+      exclude_time_ranges: [[25, 145], [180, 200], [210, 250], [270, 410], [520, 620], [690, 1400], [1425, 1480], [1520, 1660], [1750, 2241]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *up_topics
+      exclude_time_ranges: [[95, 105]]
+
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]
