@@ -1,0 +1,116 @@
+out_format: '{bag_base}.blurred_faces{ext}'
+compression: lz4
+copy_params: False
+filters:
+  - TopicTypes:
+      include_types:
+        - sensor_msgs/CompressedImage
+        - sensor_msgs/Image
+        - vision_msgs/Detection2DArray
+
+  # ugv_2024-09-26-13-54-18
+  - Drop:
+      include_tags: &bag1
+        - bag_base:ugv_2024-09-26-13-54-18
+      include_topics: &front_topics
+        - camera_front/image_color/compressed
+        - camera_front/image_color/anonymized_faces
+      exclude_time_ranges: [[65, 75], [105, 234]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &left_topics
+        - camera_left/image_color/compressed
+        - camera_left/image_color/anonymized_faces
+      exclude_time_ranges: [[50, 70], [140, 160]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &rear_topics
+        - camera_rear/image_color/compressed
+        - camera_rear/image_color/anonymized_faces
+      exclude_time_ranges: [[35, 60], [80, 220]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &right_topics
+        - camera_right/image_color/compressed
+        - camera_right/image_color/anonymized_faces
+      exclude_time_ranges: [[70, 160]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &up_topics
+        - camera_up/image_color/compressed
+        - camera_up/image_color/anonymized_faces
+      exclude_time_ranges: [[0, 40]]
+
+  # ugv_2024-09-26-13-58-46
+  - Drop:
+      include_tags: &bag2
+        - bag_base:ugv_2024-09-26-13-58-46
+      include_topics: *front_topics
+      exclude_time_ranges: [[0, 10]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *left_topics
+      exclude_time_ranges: [[0, 30]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *rear_topics
+      exclude_time_ranges: [[20, 50], [90, 180]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *right_topics
+      exclude_time_ranges: [[170, 222]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *up_topics
+      exclude_time_ranges: []
+
+  # ugv_2024-09-26-14-03-57
+  - Drop:
+      include_tags: &bag3
+        - bag_base:ugv_2024-09-26-14-03-57
+      include_topics: *front_topics
+      exclude_time_ranges: [[260, 275], [310, 340]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *left_topics
+      exclude_time_ranges: [[160, 195], [250, 315], [330, 350]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *rear_topics
+      exclude_time_ranges: [[10, 290], [340, 461]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *right_topics
+      exclude_time_ranges: [[35, 45], [60, 125], [175, 205], [230, 245]]
+  - Drop:
+      include_tags: *bag3
+      include_topics: *up_topics
+      exclude_time_ranges: []
+
+  # ugv_2024-09-26-14-14-42
+  - Drop:
+      include_tags: &bag4
+        - bag_base:ugv_2024-09-26-14-14-42
+      include_topics: *front_topics
+      exclude_time_ranges: [[120, 145], [170, 200], [230, 260], [270, 300]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *left_topics
+      exclude_time_ranges: [[125, 145], [170, 210], [230, 260], [270, 345]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *rear_topics
+      exclude_time_ranges: [[0, 40], [135, 210], [275, 290]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *right_topics
+      exclude_time_ranges: [[85, 120], [150, 185]]
+  - Drop:
+      include_tags: *bag4
+      include_topics: *up_topics
+      exclude_time_ranges: [[235, 260]]
+
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]
