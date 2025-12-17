@@ -1,0 +1,70 @@
+out_format: '{bag_base}.blurred_faces{ext}'
+compression: lz4
+copy_params: False
+filters:
+  - TopicTypes:
+      include_types:
+        - sensor_msgs/CompressedImage
+        - sensor_msgs/Image
+        - vision_msgs/Detection2DArray
+
+    # ugv_2024-09-10-17-02-31
+  - Drop:
+      include_tags: &bag1
+        - bag_base:ugv_2024-09-10-17-02-31
+      include_topics: &front_topics
+        - camera_front/image_color/compressed
+        - camera_front/image_color/anonymized_faces
+      exclude_time_ranges: [[140, 170]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &left_topics
+        - camera_left/image_color/compressed
+        - camera_left/image_color/anonymized_faces
+      exclude_time_ranges: [[0, 25], [35, 50], [70, 150]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &rear_topics
+        - camera_rear/image_color/compressed
+        - camera_rear/image_color/anonymized_faces
+      exclude_time_ranges: [[20, 100]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &right_topics
+        - camera_right/image_color/compressed
+        - camera_right/image_color/anonymized_faces
+      exclude_time_ranges: [[25, 50], [160, 200]]
+  - Drop:
+      include_tags: *bag1
+      include_topics: &up_topics
+        - camera_up/image_color/compressed
+        - camera_up/image_color/anonymized_faces
+      exclude_time_ranges: []
+
+  # ugv_2024-09-10-17-12-12
+  - Drop:
+      include_tags: &bag2
+        - bag_base:ugv_2024-09-10-17-12-12
+      include_topics: *front_topics
+      exclude_time_ranges: []
+  - Drop:
+      include_tags: *bag2
+      include_topics: *left_topics
+      exclude_time_ranges: [[30, 55]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *rear_topics
+      exclude_time_ranges: [[10, 100]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *right_topics
+      exclude_time_ranges: [[0, 20]]
+  - Drop:
+      include_tags: *bag2
+      include_topics: *up_topics
+      exclude_time_ranges: []
+
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces.csv"
+      use_header_stamp: True
+      include_types: ["vision_msgs/Detection2DArray"]

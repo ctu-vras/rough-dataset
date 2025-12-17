@@ -1,0 +1,185 @@
+out_format: '{bag_base}.camera_masks{ext}'
+compression: bz2
+copy_params: False
+filters:
+  - TopicTypes:
+      include_types:
+        - tf2_msgs/TFMessage
+        - sensor_msgs/CameraInfo
+
+  - RenderCameraMask:
+      camera_info_topic: /camera_front/camera_info
+      mask_topic: /camera_front/mask
+      description_param: marv/robot_description
+      invertColors: True
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+  - RenderCameraMask:
+      camera_info_topic: /camera_rear/camera_info
+      mask_topic: /camera_rear/mask
+      description_param: marv/robot_description
+      invertColors: True
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+      shapeInflationRegistry:
+        perShape:
+          rear_left_flipper:
+            padding: 0.03
+          rear_right_flipper:
+            padding: 0.03
+  - RenderCameraMask:
+      camera_info_topic: /camera_left/camera_info
+      mask_topic: /camera_left/mask
+      description_param: marv/robot_description
+      invertColors: True
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+  - RenderCameraMask:
+      camera_info_topic: /camera_right/camera_info
+      mask_topic: /camera_right/mask
+      description_param: marv/robot_description
+      invertColors: True
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          rear_right_flipper:
+            padding: 0.01
+  - StaticImageMask:
+      source_topic: /camera_up/camera_info
+      mask_topics: [ "/camera_up/mask/compressed" ]
+      mask_file: marv_camera_up.mask.pbm
+      format_field: 'mono8; pbm compressed '
+  - RenderCameraMask:
+      camera_info_topic: /camera_fisheye_front/camera_info
+      mask_topic: /camera_fisheye_front/mask
+      description_param: marv/robot_description
+      invertColors: True
+      staticMaskImage: marv_camera_fisheye_front.mask.png
+      staticMaskImageEncoding: rgba8
+      staticMaskIsBackground: False
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          front_left_flipper:
+            padding: 0.04
+          front_right_flipper:
+            padding: 0.04
+  - RenderCameraMask:
+      camera_info_topic: /camera_fisheye_rear/camera_info
+      mask_topic: /camera_fisheye_rear/mask
+      description_param: marv/robot_description
+      invertColors: True
+      staticMaskImage: marv_camera_fisheye_rear.mask.png
+      staticMaskImageEncoding: rgba8
+      staticMaskIsBackground: False
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          rear_left_flipper:
+            padding: 0.02
+          rear_right_flipper:
+            padding: 0.02
+  - RenderCameraMask:
+      camera_info_topic: /oak/left/camera_info
+      mask_topic: /oak/left/mask
+      description_param: marv/robot_description
+      invertColors: True
+      staticMaskImage: marv_oak_left.mask.png
+      staticMaskImageEncoding: rgba8
+      staticMaskIsBackground: False
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          front_left_flipper:
+            padding: 0.03
+          front_right_flipper:
+            padding: 0.03
+  - RenderCameraMask:
+      camera_info_topic: /oak/right/camera_info
+      mask_topic: /oak/right/mask
+      description_param: marv/robot_description
+      invertColors: True
+      staticMaskImage: marv_oak_right.mask.png
+      staticMaskImageEncoding: rgba8
+      staticMaskIsBackground: False
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          front_left_flipper:
+            padding: 0.03
+          front_right_flipper:
+            padding: 0.03
+  - RenderCameraMask:
+      camera_info_topic: /oak/rgb/camera_info
+      mask_topic: /oak/rgb/mask
+      description_param: marv/robot_description
+      invertColors: True
+      staticMaskImage: marv_oak_rgb.mask.png
+      staticMaskImageEncoding: rgba8
+      staticMaskIsBackground: False
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          front_left_flipper:
+            padding: 0.03
+          front_right_flipper:
+            padding: 0.03
+  - RenderCameraMask:
+      camera_info_topic: /camera_front_thermo/camera_info
+      mask_topic: /camera_front_thermo/mask
+      description_param: marv/robot_description
+      invertColors: True
+      shapeFilter:
+        visualAllowed: False
+        collisionAllowed: True
+        ignoreShapes: ["base_link"]
+      shapeInflationRegistry:
+        perShape:
+          front_left_flipper:
+            padding: 0.03
+          front_right_flipper:
+            padding: 0.03
+
+  - CompressImages:
+      transport: cv
+      transport_params:
+        cv:
+          format: pbm
+
+  - Remap:
+      /camera_front/mask/cv: /camera_front/mask/compressed
+      /camera_rear/mask/cv: /camera_rear/mask/compressed
+      /camera_left/mask/cv: /camera_left/mask/compressed
+      /camera_right/mask/cv: /camera_right/mask/compressed
+      /camera_fisheye_front/mask/cv: /camera_fisheye_front/mask/compressed
+      /camera_fisheye_rear/mask/cv: /camera_fisheye_rear/mask/compressed
+      /camera_front_thermo/mask/cv: /camera_front_thermo/mask/compressed
+      /oak/left/mask/cv: /oak/left/mask/compressed
+      /oak/rgb/mask/cv: /oak/rgb/mask/compressed
+      /oak/right/mask/cv: /oak/right/mask/compressed
+
+  - Drop:
+      exclude_tags:
+        - generated
