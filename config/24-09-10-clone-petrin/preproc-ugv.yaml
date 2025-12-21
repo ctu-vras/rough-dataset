@@ -5,10 +5,16 @@ filters:
       add_tags: [ "copied_tf" ]
   - CopyFirstTfToBagStart:
       add_tags: [ "copied_tf" ]
+  - RemovePasswordsFromParams: {}
   # Make sure we have TFs also for images that have stamps slightly before the start of the bag
   - FixHeader:
       include_tags: [ "copied_tf" ]
       stamp_offset: -2.0
+  - FixHeader:
+      include_topics:
+        - /camera_up/camera_info
+        - /camera_up/image_color/compressed
+      frame_id: camera_4
   - UpdateParams:
       update:
         parts_config:
@@ -23,6 +29,8 @@ filters:
             - [ 0.02, 0.1215, 0.02, 0.0, 0.0, 1.0, 0.0, rear_right_box, camera_rear ]
             - [ 0.3, 0.223, 0.02, 0.0, 0.0, 0.7071, 0.7071, rear_right_box, camera_left ]
             - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_top ]
+  - UpdateRobotModel:
+      urdf_file: "{bag_dir}/clone.urdf"
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Topics:
