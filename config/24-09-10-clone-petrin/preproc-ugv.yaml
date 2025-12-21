@@ -30,7 +30,7 @@ filters:
             - [ 0.3, 0.223, 0.02, 0.0, 0.0, 0.7071, 0.7071, rear_right_box, camera_left ]
             - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_top ]
   - UpdateRobotModel:
-      urdf_file: "{bag_dir}/clone.urdf"
+      urdf_file: "{dirname}/clone.urdf"
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Topics:
