@@ -5,3 +5,5 @@ filters:
       csv_file: "{bag_base}.faces_imgs.csv"
       use_header_stamp: True
       include_types: ["sensor_msgs/CompressedImage", "sensor_msgs/Image"]
+  - Drop:
+      include_types: ["sensor_msgs/CompressedImage", "sensor_msgs/Image"]
