@@ -1,0 +1,7 @@
+out_format: '/tmp/{bag_base}.blurred_faces_imgs{ext}'
+copy_params: False
+filters:
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces_imgs.csv"
+      use_header_stamp: True
+      include_types: ["sensor_msgs/CompressedImage", "sensor_msgs/Image"]

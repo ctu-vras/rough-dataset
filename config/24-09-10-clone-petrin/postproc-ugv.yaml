@@ -26,12 +26,6 @@ filters:
         "camera_up/image_color/compressed": [ "camera_up/camera_info" ]
   # Whenever a face is detected and blurred, drop the image from the primary bag and use the image from the extra bag
   - DropMessagesFromCSV:
-      csv_file: "{bag_base}.faces.csv"
-      additional_topics:
-        "camera_front/image_color/anonymized_faces": ["camera_front/image_color/compressed"]
-        "camera_left/image_color/anonymized_faces": ["camera_left/image_color/compressed"]
-        "camera_rear/image_color/anonymized_faces": ["camera_rear/image_color/compressed"]
-        "camera_right/image_color/anonymized_faces": ["camera_right/image_color/compressed"]
-        "camera_up/image_color/anonymized_faces": ["camera_up/image_color/compressed"]
+      csv_file: "{bag_base}.faces_imgs.csv"
       exclude_tags: ["extra_bag"]
   - DeduplicateTF: {}

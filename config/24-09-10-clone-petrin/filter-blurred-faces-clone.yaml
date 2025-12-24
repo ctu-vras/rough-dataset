@@ -68,3 +68,8 @@ filters:
       csv_file: "{bag_base}.faces.csv"
       use_header_stamp: True
       include_types: ["vision_msgs/Detection2DArray"]
+
+  - ExportMessageInfoToCSV:
+      csv_file: "{bag_base}.faces_imgs.csv"
+      use_header_stamp: True
+      include_types: ["sensor_msgs/CompressedImage", "sensor_msgs/Image"]
