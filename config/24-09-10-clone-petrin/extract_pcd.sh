@@ -8,5 +8,5 @@ for f in \
   ugv_2024-09-10-17-02-31.postproc.bag \
   ugv_2024-09-10-17-12-12.postproc.bag \
   ; do
-    rosrun rosrun cras_bag_tools extract_pcd -v `pwd`/$f ${f%.postproc.bag} --zip -c 6
+    rosrun cras_bag_tools extract_pcd -v `pwd`/$f ${f%.postproc.bag} --zip -c 6
 done
