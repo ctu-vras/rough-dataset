@@ -9,7 +9,7 @@ for f in \
   ugv_2024-09-10-17-12-12.preproc.bag \
   ; do
   
-  roslaunch -a "${SCRIPT_DIR}/../../launch/clone_recompute_points_filtered.launch" \
+  roslaunch "${SCRIPT_DIR}/../../launch/clone_recompute_points_filtered.launch" \
     bag:="$(pwd)/$f"
   
 done
