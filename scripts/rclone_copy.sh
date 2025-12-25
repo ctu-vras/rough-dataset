@@ -4,5 +4,5 @@
 
 rclone copy -P \
   --include '*.postproc.*' --include '*/*.mp4' --include '*/*.zip' \
-  --drive-chunk-size 512M --fast-list --transfers=40 --checkers=40 --buffer-size=75M \
+  --drive-chunk-size 512M --fast-list --transfers=6 --checkers=6 --buffer-size=75M \
   . gdrive:ROUGH/
