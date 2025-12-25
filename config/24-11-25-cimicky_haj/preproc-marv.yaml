@@ -5,6 +5,7 @@ filters:
       add_tags: ["copied_tf"]
   - CopyFirstTfToBagStart:
       add_tags: ["copied_tf"]
+  - RemovePasswordsFromParams: {}
   # Make sure we have TFs also for images that have stamps slightly before the start of the bag
   - FixHeader:
       include_tags: ["copied_tf"]
