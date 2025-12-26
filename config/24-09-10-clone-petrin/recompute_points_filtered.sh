@@ -12,4 +12,6 @@ for f in \
   roslaunch "${SCRIPT_DIR}/../../launch/clone_recompute_points_filtered.launch" \
     bag:="$(pwd)/$f" recompute_model:=false
   
+  sleep 10;
+  
 done
