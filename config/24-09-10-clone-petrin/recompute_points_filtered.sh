@@ -10,6 +10,6 @@ for f in \
   ; do
   
   roslaunch "${SCRIPT_DIR}/../../launch/clone_recompute_points_filtered.launch" \
-    bag:="$(pwd)/$f"
+    bag:="$(pwd)/$f" recompute_model:=false
   
 done

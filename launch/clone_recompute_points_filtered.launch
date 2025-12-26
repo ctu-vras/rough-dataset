@@ -1,13 +1,16 @@
 <launch>
   <arg name="bag"/>
   <arg name="out_bag" value="$(eval bag.replace('.bag', '').replace('.preproc', '') + '.points_filtered.bag')"/>
+  <arg name="recompute_model" default="true" />
 
   <rosparam command="load" file="$(arg bag).params"/>
   <param name="/use_sim_time" value="true"/>
   
-  <include file="$(find nifti_robot_description)/launch/load_robot_model.launch">
+  <include file="$(find nifti_robot_description)/launch/load_robot_model.launch" if="$(arg recompute_model)">
     <arg name="run_dynamic_server" value="false" />
     <arg name="robot" value="clone" />
+    <arg name="load_yamls_as_params" value="false" />
+    <arg name="render_from_ros_params" value="true" />
   </include>
 
   <node name="play" pkg="rosbag" type="play" args="--clock --delay=0.1 --rate=0.5 '$(arg bag)'" required="true" output="screen">
