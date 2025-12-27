@@ -1,0 +1,38 @@
+out_format: '{bag_base}.postproc{ext}'
+compression: lz4
+extra_bags:
+  - '{dirname}/{bag_base}.points_filtered{ext}'
+  - '{dirname}/{bag_base}.camera_masks{ext}'
+  - '{dirname}/{bag_base}.blurred_faces{ext}'
+filters:
+  - AddSubtitles:
+      subtitles_file: '{bag_base}.srt'
+      topic: /commentary
+  # drop points_filtered from primary bag and use the ones from extra bag
+  - Drop:
+      include_topics:
+        - points_filtered
+      exclude_tags:
+        - extra_bag
+  - StampTwist:
+      source_topic: "cmd_vel"
+  - DropMessagesFromCSV:
+      csv_file: "{bag_base}.invalid_imgs.csv"
+      additional_topics:
+        "camera_front/image_color/compressed": [ "camera_front/camera_info" ]
+        "camera_left/image_color/compressed": [ "camera_left/camera_info" ]
+        "camera_right/image_color/compressed": [ "camera_right/camera_info" ]
+        "camera_rear/image_color/compressed": [ "camera_rear/camera_info" ]
+        "camera_up/image_color/compressed": [ "camera_up/camera_info" ]
+  # Whenever a face is detected and blurred, drop the image from the primary bag and use the image from the extra bag
+  - DropMessagesFromCSV:
+      csv_file: "{bag_base}.faces_imgs.csv"
+      exclude_tags: ["extra_bag"]
+  # The blurred faces bag was created before fixing the frame id
+  - FixHeader:
+      include_topics:
+        - /camera_up/image_color/anonymized_faces
+        - /camera_up/image_color/compressed
+      frame_id: camera_4
+      include_tags: ["extra_bag"]
+  - DeduplicateTF: {}

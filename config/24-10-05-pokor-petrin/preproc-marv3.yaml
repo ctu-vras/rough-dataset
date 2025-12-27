@@ -1,4 +1,4 @@
-# Preproc for bags where TFs and other messages start being recorded only 60s after start
+# Preproc for bags where TFs and other messages start being recorded only 60s after start and ICP is bad
 out_format: '{bag_base}.preproc{ext}'
 compression: lz4
 filters:
@@ -25,12 +25,17 @@ filters:
       "/marv/joint_states": "/joint_states"
   - Topics:
       exclude_topics:
+        - /icp_diagnostics
+        - /icp_odom
         - /robot_bounding_box_debug
         - /robot_bounding_sphere_debug
         - /robot_model_for_bounding_box
         - /robot_model_for_bounding_sphere
         - /rosout
         - /rosout_agg
+  - Transforms:
+      exclude_parents:
+        - map
   - MagnetometerGaussToTesla:
       scale_covariance: False
       include_topics:
