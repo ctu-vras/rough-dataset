@@ -13,6 +13,7 @@ filters:
   - FixHeader:
       include_tags: [ "copied_tf" ]
       stamp_offset: 58.0
+      receive_stamp_from_header: true
 
   # Drop the start of the bag without most data
   - Drop:
