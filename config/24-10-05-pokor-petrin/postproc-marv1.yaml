@@ -4,6 +4,7 @@ extra_bags:
   - '{dirname}/{bag_base}.points_filtered{ext}'
   - '{dirname}/{bag_base}.camera_masks{ext}'
   - '{dirname}/{bag_base}.blurred_faces{ext}'
+  - '{dirname}/{bag_base}.flippers{ext}'
 filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'

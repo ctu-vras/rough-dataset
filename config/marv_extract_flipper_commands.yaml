@@ -1,0 +1,16 @@
+out_format: '{bag_base}.flippers{ext}'
+compression: lz4
+filters:
+  - Topics:
+      include_topics:
+        - /marv/flippers/joint_states
+  - ExtractJointStatesVelocityAsCommands:
+      joints:
+        - front_left_flipper_j
+        - front_right_flipper_j
+        - rear_left_flipper_j
+        - rear_right_flipper_j
+      cmd_topic: /marv/flippers_velocity_controller/cmd_vel
+      joint_states_topic: /marv/flippers/joint_states
+  - Drop:
+      exclude_tags: ["generated"]

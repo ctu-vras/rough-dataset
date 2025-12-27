@@ -3,6 +3,7 @@ compression: lz4
 extra_bags:
   - '{bag_base}.camera_masks{ext}'
   - '{bag_base}.blurred_faces{ext}'
+  - '{bag_base}.flippers{ext}'
   - '{bag_base}.icp{ext}'
 filters:
   - AddSubtitles:
@@ -18,7 +19,7 @@ filters:
   - Transforms:
       include_parents:
         - map
-      include_tags: [ "extra_bag_2" ]
+      include_tags: [ "extra_bag_3" ]
   - StampTwist:
       source_topic: "cmd_vel"
   - DropMessagesFromCSV:
