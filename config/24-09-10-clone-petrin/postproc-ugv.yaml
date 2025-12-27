@@ -28,4 +28,11 @@ filters:
   - DropMessagesFromCSV:
       csv_file: "{bag_base}.faces_imgs.csv"
       exclude_tags: ["extra_bag"]
+  # The blurred faces bag was created before fixing the frame id
+  - FixHeader:
+      include_topics:
+        - /camera_up/image_color/anonymized_faces
+        - /camera_up/image_color/compressed
+      frame_id: camera_4
+      include_tags: [ "extra_bag" ]
   - DeduplicateTF: {}
