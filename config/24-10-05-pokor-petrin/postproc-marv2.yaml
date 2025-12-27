@@ -9,6 +9,7 @@ filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'
       topic: /commentary
+  - RemovePasswordsFromParams: {}
   # copy map->odom TF from ICP extra bag
   - Transforms:
       include_parents:

@@ -4,6 +4,7 @@ filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'
       topic: /commentary
+  - RemovePasswordsFromParams: {}
   - StampTwist:
       source_topic: "/cmd_vel"
   - DeduplicateTF: {}

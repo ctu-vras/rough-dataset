@@ -8,6 +8,7 @@ filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'
       topic: /commentary
+  - RemovePasswordsFromParams: {}
   # drop points_filtered from primary bag and use the ones from extra bag
   - Drop:
       include_topics:
