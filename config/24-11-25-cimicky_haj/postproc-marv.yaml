@@ -3,6 +3,7 @@ compression: lz4
 extra_bags:
   - '{dirname}/{bag_base}.camera_masks{ext}'
   - '{dirname}/{bag_base}.flippers{ext}'
+  - '{dirname}/{bag_base}.license_plates_blurred{ext}'
 filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'
@@ -10,6 +11,10 @@ filters:
   - RemovePasswordsFromParams: {}
   - StampTwist:
       source_topic: "cmd_vel"
+  # marv_2024-11-25-03-46-38 has license plates in left cam, only keep the blurred ones
+  - Drop:
+      include_topics: ["camera_left/image_color/compressed"]
+      include_tags: [["primary_bag", "bag_base:marv_2024-11-25-03-46-38"]]
   - DropMessagesFromCSV:
       csv_file: "{bag_base}.invalid_imgs.csv"
       additional_topics:
