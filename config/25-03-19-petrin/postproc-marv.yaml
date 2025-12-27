@@ -1,10 +1,10 @@
 out_format: '{bag_base}.postproc{ext}'
 compression: lz4
 extra_bags:
-  - '{bag_base}.camera_masks{ext}'
-  - '{bag_base}.blurred_faces{ext}'
-  - '{bag_base}.flippers{ext}'
-  - '{bag_base}.icp{ext}'
+  - '{dirname}/{bag_base}.camera_masks{ext}'
+  - '{dirname}/{bag_base}.blurred_faces{ext}'
+  - '{dirname}/{bag_base}.flippers{ext}'
+  - '{dirname}/{bag_base}.icp{ext}'
 filters:
   - AddSubtitles:
       subtitles_file: '{bag_base}.srt'
