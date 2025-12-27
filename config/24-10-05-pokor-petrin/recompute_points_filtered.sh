@@ -20,8 +20,8 @@ for f in \
 done
 
 for f in \
-  marv_2024-10-05-12-34-53.bag \
-  marv_2024-10-05-13-01-40.bag \
+  marv_2024-10-05-12-34-53.preproc.bag \
+  marv_2024-10-05-13-01-40.preproc.bag \
   ; do
   
   roslaunch "${SCRIPT_DIR}/../../launch/marv_recompute_points_filtered.launch" \

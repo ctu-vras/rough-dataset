@@ -1,0 +1,19 @@
+<launch>
+  <arg name="bag"/>
+  <arg name="out_bag" value="$(eval bag.replace('.bag', '').replace('.preproc', '') + '.icp.bag')"/>
+
+  <rosparam command="load" file="$(arg bag).params"/>
+  <param name="/use_sim_time" value="true"/>
+  
+  <node name="play" pkg="rosbag" type="play" args="--clock --delay=0.1 --rate=0.5 '$(arg bag)'" required="true" output="screen">
+  </node>
+
+  <include file="$(find ctu_mapping)/launch/realtime_mapping.launch">
+    <arg name="backup_in_ram" value="false" />
+  </include>
+  
+  <node name="rec" pkg="rosbag" type="record"
+        args="--lz4 -O '$(arg out_bag)' icp_odom icp_diagnostics tf"
+        output="screen" required="true">
+  </node>
+</launch>
