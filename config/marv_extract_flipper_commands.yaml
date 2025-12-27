@@ -1,5 +1,6 @@
 out_format: '{bag_base}.flippers{ext}'
 compression: lz4
+copy_params: False
 filters:
   - Topics:
       include_topics:
