@@ -25,7 +25,7 @@ for f in \
   ; do
   
   roslaunch "${SCRIPT_DIR}/../../launch/marv_recompute_points_filtered.launch" \
-    bag:="$(pwd)/$f" recompute_model:=false
+    bag:="$(pwd)/$f"
   
   sleep 10;
   
