@@ -4,13 +4,15 @@ compression: lz4
 filters:
   - MergeInitialStaticTf:
       add_tags: [ "copied_tf" ]
+      delay: 53.0
   - CopyFirstTfToBagStart:
       add_tags: [ "copied_tf" ]
+      max_delay: 53.0
   - RemovePasswordsFromParams: {}
   # Make sure we have TFs also for images that have stamps slightly before the start of the bag
   - FixHeader:
       include_tags: [ "copied_tf" ]
-      stamp_offset: -2.0
+      stamp_offset: 46.0
 
   # Drop the start of the bag without most data
   - Drop:
