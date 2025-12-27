@@ -1,4 +1,4 @@
-out_format: '{bag_base}.preproc2{ext}'
+out_format: '{bag_base}.preproc{ext}'
 compression: lz4
 filters:
   - MergeInitialStaticTf:
@@ -9,6 +9,18 @@ filters:
   - FixHeader:
       include_tags: ["copied_tf"]
       stamp_offset: -2.0
+
+  # Two bags have bad ICP, so remove any remnants
+  - Drop:
+      include_topics:
+        - /icp_diagnostics
+        - /icp_odom
+      include_tags: ['bag_base:marv_2025-03-19-14-41-19', 'bag_base:marv_2025-03-19-15-03-51']
+  - Transforms:
+      exclude_parents:
+        - map
+      include_tags: ['bag_base:marv_2025-03-19-14-41-19', 'bag_base:marv_2025-03-19-15-03-51']
+
   # marv_2025-03-19-15-36-49.bag has a bad static TF, no idea why
   - Transforms:
       include_topics: ["/tf_static"]
