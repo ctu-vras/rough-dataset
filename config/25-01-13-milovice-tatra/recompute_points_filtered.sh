@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+[[ "$(pwd)" == *25-01-13-milovice-tatra ]] || { echo "This script has to be run in folder 25-01-13-milovice-tatra !" 1>&2; exit 1; } 
+
+for f in \
+  tatra_2025-01-13-14-11-33.preproc.bag \
+  tatra_2025-01-13-14-17-04.preproc.bag \
+  tatra_2025-01-13-16-25-31.preproc.bag \
+  tatra_2025-01-13-16-35-07.preproc.bag \
+  tatra_2025-01-13-16-43-29.preproc.bag \
+  tatra_2025-01-13-16-53-30.preproc.bag \
+  tatra_2025-01-13-16-57-32.preproc.bag \
+  tatra_2025-01-13-17-00-46.preproc.bag \
+  tatra_2025-01-13-17-27-32.preproc.bag \
+  ; do
+  
+  roslaunch "${SCRIPT_DIR}/../../launch/tatra_recompute_points_filtered.launch" \
+    bag:="$(pwd)/$f"
+  
+  sleep 10;
+  
+done
