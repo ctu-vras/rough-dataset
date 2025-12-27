@@ -1,0 +1,51 @@
+out_format: '{bag_base}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf:
+      add_tags: [ "copied_tf" ]
+  - CopyFirstTfToBagStart:
+      add_tags: [ "copied_tf" ]
+  - RemovePasswordsFromParams: {}
+  # Make sure we have TFs also for images that have stamps slightly before the start of the bag
+  - FixHeader:
+      include_tags: [ "copied_tf" ]
+      stamp_offset: -2.0
+  - FixHeader:
+      include_topics:
+        - /camera_up/camera_info
+        - /camera_up/image_color/compressed
+      frame_id: camera_4
+  - UpdateParams:
+      update:
+        parts_config:
+          has_top_box_lora_ant: False
+          has_top_box_l_wifi_ant: False
+          has_top_box_r_wifi_ant: False
+          has_rollcage: True
+        omnicam_sensors_calib:
+          transforms:
+            - [ 0.6, 0.1215, 0.02, 0.0, 0.0, 0.0, 1.0, rear_right_box, camera_front ]
+            - [ 0.3, 0.02, 0.02, 0.0, 0.0, 0.7071, -0.7071, rear_right_box, camera_right ]
+            - [ 0.02, 0.1215, 0.02, 0.0, 0.0, 1.0, 0.0, rear_right_box, camera_rear ]
+            - [ 0.3, 0.223, 0.02, 0.0, 0.0, 0.7071, 0.7071, rear_right_box, camera_left ]
+            - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_top ]
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/clone.urdf"
+  - Remap:
+      "/points_filtered_kontron": "/points_filtered"
+  - Topics:
+      exclude_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
