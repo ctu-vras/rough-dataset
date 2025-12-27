@@ -1,0 +1,34 @@
+out_format: '{bag_base}.preproc{ext}'
+compression: lz4
+filters:
+  - MergeInitialStaticTf:
+      add_tags: [ "copied_tf" ]
+  - CopyFirstTfToBagStart:
+      add_tags: [ "copied_tf" ]
+  - RemovePasswordsFromParams: {}
+  # Make sure we have TFs also for images that have stamps slightly before the start of the bag
+  - FixHeader:
+      include_tags: [ "copied_tf" ]
+      stamp_offset: -2.0
+  - Remap:
+      "/points_filtered_kontron": "/points_filtered"
+  - Copy:
+      "/marv/cartesian_controller/cmd_vel": "/cmd_vel"
+      "/marv/cartesian_controller/odom": "/odom_2d"
+      "/marv/joint_states": "/joint_states"
+  - Topics:
+      exclude_topics:
+        - /robot_bounding_box_debug
+        - /robot_bounding_sphere_debug
+        - /robot_model_for_bounding_box
+        - /robot_model_for_bounding_sphere
+        - /rosout
+        - /rosout_agg
+  - MagnetometerGaussToTesla:
+      scale_covariance: False
+      include_topics:
+        - imu/mag
+        - imu/mag_bias
+        - imu/mag_unbiased
+  - RemoveInvalidTF: { }
+  - DeduplicateTF: { }
