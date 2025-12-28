@@ -7,7 +7,7 @@ extra_bags:
   - '{dirname}/{bag_base}.icp{ext}'
 filters:
   - AddSubtitles:
-      subtitles_file: '{bag_base}.srt'
+      subtitles_file: '{dirname}/{bag_base}.srt'
       topic: /commentary
   - RemovePasswordsFromParams: {}
   # drop points_filtered from primary bag and use the ones from extra bag
@@ -24,7 +24,7 @@ filters:
   - StampTwist:
       source_topic: "cmd_vel"
   - DropMessagesFromCSV:
-      csv_file: "{bag_base}.invalid_imgs.csv"
+      csv_file: "{dirname}/{bag_base}.invalid_imgs.csv"
       additional_topics:
         "camera_front/image_color/compressed": [ "camera_front/camera_info" ]
         "camera_fisheye_front/image_color/compressed": [ "camera_fisheye_front/camera_info" ]
@@ -35,6 +35,6 @@ filters:
         "camera_up/image_color/compressed": [ "camera_up/camera_info" ]
     # Whenever a face is detected and blurred, drop the image from the primary bag and use the image from the extra bag
   - DropMessagesFromCSV:
-      csv_file: "{bag_base}.faces_imgs.csv"
+      csv_file: "{dirname}/{bag_base}.faces_imgs.csv"
       exclude_tags: ["extra_bag"]
   - DeduplicateTF: {}
