@@ -1,6 +1,8 @@
 # Preproc config for bags where flippers have wrong angle, and most static tfs are missing
 out_format: '{bag_base}.preproc{ext}'
 compression: lz4
+extra_bags:
+  - '{dirname}/{bag_base}.static_tfs{ext}'
 filters:
   - MergeInitialStaticTf:
       add_tags: [ "copied_tf" ]

@@ -1,0 +1,9 @@
+out_format: 'marv_2024-10-05-13-01-40.static_tfs{ext}'
+compression: lz4
+copy_params: false
+filters:
+  - Topics:
+      include_topics:
+        - '/tf_static'
+  - FixHeader:
+      receive_stamp_offset: 1606.52

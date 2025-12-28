@@ -12,7 +12,9 @@ rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/preproc-ugv.yaml" -- \
 	ugv_2024-10-05-16-24-48.bag
 
 rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/preproc-marv1.yaml" -- \
-  marv_2024-10-05-12-34-53.bag \
+  marv_2024-10-05-12-34-53.bag
+
+rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/preproc-marv1.2.yaml" -- \
   marv_2024-10-05-13-01-40.bag
 
 rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/preproc-marv2.yaml" -- \
