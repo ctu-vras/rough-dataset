@@ -1,4 +1,4 @@
-out_format: '{bag_base}.preproc2{ext}'
+out_format: '{bag_base}.preproc{ext}'
 compression: lz4
 filters:
   - MergeInitialStaticTf:
