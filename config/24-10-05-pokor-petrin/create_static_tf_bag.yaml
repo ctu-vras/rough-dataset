@@ -6,4 +6,4 @@ filters:
       include_topics:
         - '/tf_static'
   - FixHeader:
-      receive_stamp_offset: 1606.52
+      receive_stamp_offset: 1607.52
