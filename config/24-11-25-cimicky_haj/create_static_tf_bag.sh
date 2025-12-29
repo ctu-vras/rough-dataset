@@ -16,6 +16,6 @@ for bag in "${bad_bags[@]}"; do
   receive_stamp_offset=$(echo "scale=6; ${bag_start} - ${good_bag_start}" | bc)  
   
   rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/create_static_tf_bag.yaml" \
-    -o "${bag}.static_tfs.bag" --receive-stamp-offset "${receive_stamp_offset}"
+    -o "${bag}.static_tfs.bag" --receive-stamp-offset "${receive_stamp_offset}" -- \
     "${good_bag}.bag"
 done
