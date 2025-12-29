@@ -15,6 +15,8 @@
 
   <node name="play" pkg="rosbag" type="play" args="--clock --delay=0.1 --rate=0.5 '$(arg bag)'" required="true" output="screen">
     <remap from="points_filtered" to="points_filtered_orig" />
+    <remap from="robot_bounding_box" to="robot_bounding_box_orig" />
+    <remap from="robot_bounding_sphere" to="robot_bounding_sphere_orig" />
   </node>
   
   <node name="laser_nodelet_manager_nuc" pkg="nodelet" type="nodelet" args="manager" output="screen" required="true">
