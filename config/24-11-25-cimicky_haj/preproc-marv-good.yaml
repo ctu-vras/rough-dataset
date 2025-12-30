@@ -1,13 +1,9 @@
+
 out_format: '{bag_base}.preproc{ext}'
 compression: lz4
-extra_bags:
-  - '{dirname}/{bag_base}.static_tfs.bag'
 filters:
-  # Take static TFs only from the extra bag
-  - Drop:
-      include_topics:
-        - /tf_static
-      include_tags: ["primary_bag"]
+  - MergeInitialStaticTf:
+      add_tags: ["copied_tf"]
   - CopyFirstTfToBagStart:
       add_tags: ["copied_tf"]
   - RemovePasswordsFromParams: {}
@@ -15,6 +11,7 @@ filters:
   - FixHeader:
       include_tags: ["copied_tf"]
       stamp_offset: -2.0
+  - RemovePasswordsFromParams: {}
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Copy:

@@ -4,10 +4,3 @@ filters:
   - Topics:
       include_topics:
         - '/tf_static'
-  - Transforms:
-      include_parents:
-        - camera_front
-        - oak
-        - oak_left_camera_frame
-        - oak_right_camera_frame
-        - oak_rgb_camera_frame
