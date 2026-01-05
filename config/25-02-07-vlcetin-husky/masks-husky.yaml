@@ -5,12 +5,14 @@ filters:
   - Topics:
       include_topics:
         - camera_front/camera_info
+        - camera_front_thermo/camera_info
         - camera_left/camera_info
         - camera_rear/camera_info
         - camera_right/camera_info
         - oak/left/camera_info
         - oak/right/camera_info
         - camera_front/image_color/mask/compressed
+        - camera_front_thermo/mask/compressed
         - camera_left/image_color/mask/compressed
         - camera_rear/image_color/mask/compressed
         - camera_right/image_color/mask/compressed
@@ -29,6 +31,12 @@ filters:
       mask_file: '{dirname}/camera_front-loose.mask.pbm'
       format_field: 'mono8; pbm compressed '
       include_time_ranges: [[1738943552.521, 1738945372.0]]
+
+  - StaticImageMask:
+      source_topic: camera_front_thermo/camera_info
+      mask_topics: [ "camera_front_thermo/mask/compressed" ]
+      mask_file: '{dirname}/camera_front_thermo.mask.pbm'
+      format_field: 'mono8; pbm compressed '
 
   - StaticImageMask:
       source_topic: camera_left/camera_info
