@@ -97,9 +97,6 @@ filters:
       mask_topic: /oak/rgb/mask
       description_param: marv/robot_description
       invertColors: True
-      staticMaskImage: marv_oak_rgb.mask.png
-      staticMaskImageEncoding: rgba8
-      staticMaskIsBackground: False
       shapeFilter:
         visualAllowed: False
         collisionAllowed: True
@@ -107,9 +104,9 @@ filters:
       shapeInflationRegistry:
         perShape:
           front_left_flipper:
-            padding: 0.03
+            padding: 0.02
           front_right_flipper:
-            padding: 0.03
+            padding: 0.02
 
   - CompressImages:
       transport: cv
