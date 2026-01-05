@@ -10,12 +10,6 @@ filters:
       subtitles_file: '{dirname}/{bag_base}.srt'
       topic: /commentary
   - RemovePasswordsFromParams: {}
-  # drop points_filtered from primary bag and use the ones from extra bag
-  - Drop:
-      include_topics:
-        - points_filtered
-      exclude_tags:
-        - extra_bag
   # copy map->odom TF from ICP extra bag
   - Transforms:
       include_parents:
