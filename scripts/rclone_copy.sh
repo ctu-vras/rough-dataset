@@ -7,7 +7,6 @@ rclone copy -P \
   --filter '- /24-10-05-pokor-petrin/**' \
   --filter '- /24-10-31-petrin/**' \
   --filter '- /24-11-25-cimicky_haj/**' \
-  --filter '- /25-02-07-vlcetin-husky/**' \
   --filter '- Ogre.log' --filter '- photodoc/**' \
   --filter '+ /*/*.postproc.*' --filter '+ /*/*/*.{mp4,zip}' --filter '+ /*/*.{csv,gpx,log,params,sdf,srt,urdf}' \
   --filter '+ /*/*.external_cams_blurred.bag' --filter '+ /*/*_gnss.zip' \
