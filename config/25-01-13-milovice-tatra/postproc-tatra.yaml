@@ -11,6 +11,8 @@ filters:
   - Topics:
       exclude_topics:
         - points
+  - Remap:
+      "/odom": "/imu_odom"
   - StampTwist:
       source_topic: "cmd_vel"
   - DropMessagesFromCSV:
