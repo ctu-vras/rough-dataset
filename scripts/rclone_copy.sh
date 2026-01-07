@@ -3,7 +3,6 @@
 [[ -d 24-09-10-clone-petrin ]] || { echo "This script has to be run in folder with dataset runs !" 1>&2; exit 1; }
 
 rclone copy -P \
-  --filter '- /24-09-26-petrin-marv_clone/**' \
   --filter '- Ogre.log' --filter '- photodoc/**' \
   --filter '+ /*/*.postproc.*' --filter '+ /*/*/*.{mp4,zip}' --filter '+ /*/*.{csv,gpx,log,params,sdf,srt,urdf}' \
   --filter '+ /*/*.external_cams_blurred.bag' --filter '+ /*/*_gnss.zip' \
