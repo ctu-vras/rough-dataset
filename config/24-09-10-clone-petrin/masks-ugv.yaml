@@ -15,6 +15,7 @@ filters:
       shapeFilter:
         visualAllowed: False
         collisionAllowed: True
+        ignoreShapes: ["base_link"]
   - RenderCameraMask:
       camera_info_topic: /camera_rear/camera_info
       mask_topic: /camera_rear/mask
