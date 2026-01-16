@@ -2,7 +2,7 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-dataset="$(dirname "$SCRIPT_DIR")"
+dataset="$(basename "$SCRIPT_DIR")"
 [[ "$(pwd)" == *"$dataset" ]] || { echo "This script has to be run in folder ${dataset} !" 1>&2; exit 1; } 
 
 rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/../extract_csvs.yaml" -- *_????-??-??-??-??-??.postproc.no_sensors.bag
