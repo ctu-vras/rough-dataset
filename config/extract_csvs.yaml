@@ -1,4 +1,5 @@
 out_format: '/tmp/{bag_base}.export_csvs{ext}'
+copy_params: False
 filters:
   - Topics:
       include_topics:
