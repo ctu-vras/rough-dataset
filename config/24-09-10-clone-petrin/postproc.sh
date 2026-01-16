@@ -2,7 +2,8 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-[[ "$(pwd)" == *24-09-10-clone-petrin ]] || { echo "This script has to be run in folder 24-09-10-clone-petrin !" 1>&2; exit 1; }
+dataset="$(basename "$SCRIPT_DIR")"
+[[ "$(pwd)" == *"$dataset" ]] || { echo "This script has to be run in folder ${dataset} !" 1>&2; exit 1; }
 
 src_dir=
 if [[ $# -gt 0 ]]; then
