@@ -72,6 +72,15 @@ filters:
   - UpdateRobotModel:
       urdf_file: "{dirname}/clone.urdf"
       param: nifti_robot_description
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/clone.urdf"
+      param: robot_description
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/clone.urdf"
+      param: nifti_tf_publisher/robot_description
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/clone.urdf"
+      param: dynamic_robot_model_server/robot_description
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Topics:
