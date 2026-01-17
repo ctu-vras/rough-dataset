@@ -50,3 +50,4 @@ filters:
             child_frame_id: pylon_camera_up
   - UpdateRobotModel:
       urdf_file: "{dirname}/clone.urdf"
+      param: nifti_robot_description

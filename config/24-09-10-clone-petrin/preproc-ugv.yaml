@@ -71,6 +71,7 @@ filters:
             - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_up ]
   - UpdateRobotModel:
       urdf_file: "{dirname}/clone.urdf"
+      param: nifti_robot_description
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Topics:

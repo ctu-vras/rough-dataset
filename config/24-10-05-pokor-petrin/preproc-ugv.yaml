@@ -12,9 +12,49 @@ filters:
       stamp_offset: -2.0
   - FixHeader:
       include_topics:
+        - /camera_front/camera_info
+        - /camera_front/image_color/compressed
+      frame_id: pylon_camera_front
+  - FixHeader:
+      include_topics:
+        - /camera_left/camera_info
+        - /camera_left/image_color/compressed
+      frame_id: pylon_camera_left
+  - FixHeader:
+      include_topics:
+        - /camera_rear/camera_info
+        - /camera_rear/image_color/compressed
+      frame_id: pylon_camera_rear
+  - FixHeader:
+      include_topics:
+        - /camera_right/camera_info
+        - /camera_right/image_color/compressed
+      frame_id: pylon_camera_right
+  - FixHeader:
+      include_topics:
         - /camera_up/camera_info
         - /camera_up/image_color/compressed
-      frame_id: camera_4
+      frame_id: pylon_camera_up
+  - Transforms:
+      change:
+        camera_front:
+          camera_0:
+            child_frame_id: pylon_camera_front
+        camera_left:
+          camera_3:
+            child_frame_id: pylon_camera_left
+        camera_rear:
+          camera_2:
+            child_frame_id: pylon_camera_rear
+        camera_right:
+          camera_1:
+            child_frame_id: pylon_camera_right
+        camera_top:
+          pylon_camera_up:
+            frame_id: camera_up
+          camera_4:
+            frame_id: camera_up
+            child_frame_id: pylon_camera_up
   - UpdateParams:
       update:
         parts_config:
@@ -31,6 +71,7 @@ filters:
             - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_top ]
   - UpdateRobotModel:
       urdf_file: "{dirname}/clone.urdf"
+      param: nifti_robot_description
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Topics:
