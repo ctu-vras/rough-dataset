@@ -1,15 +1,8 @@
-out_format: '{bag_base}.preproc{ext}'
+# Fix Clone frames in already generated files
+out_format: '{dirname}/{basename}{ext}'
 compression: lz4
+copy_params: False
 filters:
-  - MergeInitialStaticTf:
-      add_tags: [ "copied_tf" ]
-  - CopyFirstTfToBagStart:
-      add_tags: [ "copied_tf" ]
-  - RemovePasswordsFromParams: {}
-  # Make sure we have TFs also for images that have stamps slightly before the start of the bag
-  - FixHeader:
-      include_tags: [ "copied_tf" ]
-      stamp_offset: -2.0
   - FixHeader:
       include_topics:
         - /camera_front/camera_info
@@ -55,21 +48,3 @@ filters:
           camera_4:
             frame_id: camera_up
             child_frame_id: pylon_camera_up
-  - Remap:
-      "/points_filtered_kontron": "/points_filtered"
-  - Topics:
-      exclude_topics:
-        - /robot_bounding_box_debug
-        - /robot_bounding_sphere_debug
-        - /robot_model_for_bounding_box
-        - /robot_model_for_bounding_sphere
-        - /rosout
-        - /rosout_agg
-  - MagnetometerGaussToTesla:
-      scale_covariance: False
-      include_topics:
-        - imu/mag
-        - imu/mag_bias
-        - imu/mag_unbiased
-  - RemoveInvalidTF: { }
-  - DeduplicateTF: { }
