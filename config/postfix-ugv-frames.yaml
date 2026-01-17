@@ -1,7 +1,7 @@
 # Fix Clone frames in already generated files
 out_format: '{dirname}/{basename}{ext}'
 compression: lz4
-copy_params: False
+copy_params: True
 filters:
   - FixHeader:
       include_topics:
@@ -48,3 +48,5 @@ filters:
           camera_4:
             frame_id: camera_up
             child_frame_id: pylon_camera_up
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/clone.urdf"
