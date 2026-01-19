@@ -1,10 +1,10 @@
 out_format: '/tmp/{bag_base}.export_csvs{ext}'
 copy_params: False
 filters:
-  - Topics:
-      include_topics:
-        - /tf
-        - /tf_static
+  - TopicTypes:
+      include_types:
+        - sensor_msgs/CameraInfo
+        - tf2_msgs/TFMessage
 
   - ExportTFTrajectory:
       odom_frame_id: map
@@ -63,5 +63,42 @@ filters:
         - [base_link, gps_antenna]
         - [base_link, dgps_main_antenna]
         - [base_link, dgps_aux_antenna]
+
+  - ExportCameraInfoToYAML:
+      topic: /camera_fisheye_front/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_fisheye_front.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_fisheye_rear/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_fisheye_rear.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_front/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_front.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_left/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_left.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_rear/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_rear.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_right/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_right.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_up/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_up.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /oak/left/camera_info
+      yaml_file: '{bag_base}.caminfo.oak_left.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /oak/right/camera_info
+      yaml_file: '{bag_base}.caminfo.oak_right.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /oak/rgb/camera_info
+      yaml_file: '{bag_base}.caminfo.oak_rgb.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /oak/stereo/camera_info
+      yaml_file: '{bag_base}.caminfo.oak_stereo.yaml'
+  - ExportCameraInfoToYAML:
+      topic: /camera_front_thermo/camera_info
+      yaml_file: '{bag_base}.caminfo.camera_front_thermo.yaml'
 
   - Drop: {}
