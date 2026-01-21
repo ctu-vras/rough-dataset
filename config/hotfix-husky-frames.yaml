@@ -23,6 +23,16 @@ filters:
         - /camera_right/camera_info
         - /camera_right/image_color/compressed
       frame_id: pylon_camera_right
+  - FixHeader:
+      include_topics:
+        - /camera_front_thermo/camera_info
+        - /camera_front_thermo/image8/compressed
+        - /camera_front_thermo/image8_norm/compressed
+        - /camera_front_thermo/image_heatmap/compressed
+        - /camera_front_thermo/image_raw
+        - /camera_front_thermo/max_temp
+        - /camera_front_thermo/min_temp
+      frame_id: camera_front_thermo
   - Transforms:
       exclude_parents:
         - oak-d-base-frame
@@ -56,6 +66,9 @@ filters:
           camera_3_optical:
             frame_id: camera_left
             child_frame_id: pylon_camera_left
+        boson_camera_mount:
+          boson_camera:
+            child_frame_id: camera_front_thermo
   - UpdateRobotModel:
       urdf_file: "{dirname}/husky.urdf"
       param: robot_description

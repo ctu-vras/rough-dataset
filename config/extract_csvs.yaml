@@ -60,7 +60,7 @@ filters:
         - [base_link, oak_left_camera_frame]
         - [base_link, oak_right_camera_frame]
         - [base_link, oak_imu_frame]
-        - [base_link, boson_camera]
+        - [base_link, camera_front_thermo]
         - [base_link, gps_antenna]
         - [base_link, dgps_main_antenna]
         - [base_link, dgps_aux_antenna]
