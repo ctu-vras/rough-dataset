@@ -5,7 +5,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 dataset="$(basename "$SCRIPT_DIR")"
 [[ "$(pwd)" == *"$dataset" ]] || { echo "This script has to be run in folder ${dataset} !" 1>&2; exit 1; } 
 
-rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/preproc-marv.yaml" -- \
+rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/preproc-marv-good.yaml" -- \
   marv_2024-11-25-04-03-37.bag
 
 "${SCRIPT_DIR}"/create_static_tf_bag.sh
