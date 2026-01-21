@@ -142,4 +142,5 @@ filters:
       publish_new_tfs: true
       add_tags: ["recomputed"]
   - RemoveInvalidTF: {}
-  - DeduplicateTF: {}
+  - DeduplicateTF:
+      cache_size: 10

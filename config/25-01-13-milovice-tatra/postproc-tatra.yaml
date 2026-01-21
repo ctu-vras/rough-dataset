@@ -21,4 +21,5 @@ filters:
         "camera_front/image_color/compressed": [ "camera_front/camera_info" ]
         "camera_left/image_color/compressed": [ "camera_left/camera_info" ]
         "camera_right/image_color/compressed": [ "camera_right/camera_info" ]
-  - DeduplicateTF: {}
+  - DeduplicateTF:
+      cache_size: 10
