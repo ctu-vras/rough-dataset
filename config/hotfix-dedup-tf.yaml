@@ -3,4 +3,5 @@ out_format: '{dirname}/{basename}{ext}'
 compression: lz4
 copy_params: True
 filters:
-  - DeduplicateTF: {}
+  - DeduplicateTF:
+      cache_size: 10
