@@ -46,22 +46,22 @@ filters:
       include_topics:
         - /camera_front/camera_info
         - /camera_front/image_color/compressed
-      frame_id: camera_0_optical
+      frame_id: pylon_camera_front
   - FixHeader:
       include_topics:
         - /camera_right/camera_info
         - /camera_right/image_color/compressed
-      frame_id: camera_1_optical
+      frame_id: pylon_camera_right
   - FixHeader:
       include_topics:
         - /camera_rear/camera_info
         - /camera_rear/image_color/compressed
-      frame_id: camera_2_optical
+      frame_id: pylon_camera_rear
   - FixHeader:
       include_topics:
         - /camera_left/camera_info
         - /camera_left/image_color/compressed
-      frame_id: camera_3_optical
+      frame_id: pylon_camera_left
   - FixHeader:
       include_topics:
         - /oak/left/camera_info
@@ -80,12 +80,36 @@ filters:
         - /oak/stereo/image_raw/compressedDepth
       frame_id: oak_rgb_camera_optical_frame
   - Transforms:
+      exclude_parents:
+        - oak-d-base-frame
+      exclude_children:
+        - oak-d_frame
       change:
-        camera_front:
-          oak:
-            frame_id: camera_0
-  # remove top plate from URDF
-  # add antennas to URDF
+        tower_camera_floor:
+          camera_0:
+            child_frame_id: camera_front
+          camera_1:
+            child_frame_id: camera_right
+          camera_2:
+            child_frame_id: camera_rear
+          camera_3:
+            child_frame_id: camera_left
+        camera_0:
+          camera_0_optical:
+            frame_id: camera_front
+            child_frame_id: pylon_camera_front
+        camera_1:
+          camera_1_optical:
+            frame_id: camera_right
+            child_frame_id: pylon_camera_right
+        camera_2:
+          camera_2_optical:
+            frame_id: camera_rear
+            child_frame_id: pylon_camera_rear
+        camera_3:
+          camera_3_optical:
+            frame_id: camera_left
+            child_frame_id: pylon_camera_left
   - RemoveInvalidTF: { }
   - DeduplicateTF: { }
 

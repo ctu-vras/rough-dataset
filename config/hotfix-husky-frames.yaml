@@ -1,0 +1,61 @@
+# Fix Clone frames in already generated files
+out_format: '{dirname}/{basename}{ext}'
+compression: lz4
+copy_params: True
+filters:
+  - FixHeader:
+      include_topics:
+        - /camera_front/camera_info
+        - /camera_front/image_color/compressed
+      frame_id: pylon_camera_front
+  - FixHeader:
+      include_topics:
+        - /camera_left/camera_info
+        - /camera_left/image_color/compressed
+      frame_id: pylon_camera_left
+  - FixHeader:
+      include_topics:
+        - /camera_rear/camera_info
+        - /camera_rear/image_color/compressed
+      frame_id: pylon_camera_rear
+  - FixHeader:
+      include_topics:
+        - /camera_right/camera_info
+        - /camera_right/image_color/compressed
+      frame_id: pylon_camera_right
+  - Transforms:
+      exclude_parents:
+        - oak-d-base-frame
+      exclude_children:
+        - oak-d_frame
+      change:
+        tower_camera_floor:
+          camera_0:
+            child_frame_id: camera_front
+          camera_1:
+            child_frame_id: camera_right
+          camera_2:
+            child_frame_id: camera_rear
+          camera_3:
+            child_frame_id: camera_left
+        camera_0:
+          camera_0_optical:
+            frame_id: camera_front
+            child_frame_id: pylon_camera_front
+          oak:
+            frame_id: camera_front
+        camera_1:
+          camera_1_optical:
+            frame_id: camera_right
+            child_frame_id: pylon_camera_right
+        camera_2:
+          camera_2_optical:
+            frame_id: camera_rear
+            child_frame_id: pylon_camera_rear
+        camera_3:
+          camera_3_optical:
+            frame_id: camera_left
+            child_frame_id: pylon_camera_left
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/husky.urdf"
+      param: robot_description
