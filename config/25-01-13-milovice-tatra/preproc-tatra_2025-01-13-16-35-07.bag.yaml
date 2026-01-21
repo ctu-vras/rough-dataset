@@ -142,6 +142,7 @@ filters:
       publish_new_tfs: true
       add_tags: ["recomputed"]
   - AddStaticTF:
+      transforms:
       - frame_id: base_link
         child_frame_id: base_footprint
         transform: [0.0, 0.0, -0.545, 0.0, 0.0, 0.0]

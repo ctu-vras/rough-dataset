@@ -98,6 +98,7 @@ filters:
         - imu/mag_bias
         - imu/mag_unbiased
   - AddStaticTF:
+      transforms:
       - frame_id: base_link
         child_frame_id: base_footprint
         transform: [0.0, 0.0, -0.07, 0.0, 0.0, 0.0]
