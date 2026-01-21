@@ -1,9 +1,8 @@
+# Add base_footprint TF
+out_format: '{dirname}/{basename}{ext}'
 compression: lz4
-copy_params: false
+copy_params: True
 filters:
-  - Topics:
-      include_topics:
-        - '/tf_static'
   - AddStaticTF:
       - frame_id: base_link
         child_frame_id: base_footprint

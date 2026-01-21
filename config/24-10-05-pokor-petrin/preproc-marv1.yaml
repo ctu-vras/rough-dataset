@@ -50,5 +50,9 @@ filters:
         - imu/mag
         - imu/mag_bias
         - imu/mag_unbiased
+  - AddStaticTF:
+      - frame_id: base_link
+        child_frame_id: base_footprint
+        transform: [0.0, 0.0, -0.125, 0.0, 0.0, 0.0]
   - RemoveInvalidTF: { }
   - DeduplicateTF: { }

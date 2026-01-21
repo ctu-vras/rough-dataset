@@ -141,6 +141,10 @@ filters:
       description_file: tatra.urdf
       publish_new_tfs: true
       add_tags: ["recomputed"]
+  - AddStaticTF:
+      - frame_id: base_link
+        child_frame_id: base_footprint
+        transform: [0.0, 0.0, -0.545, 0.0, 0.0, 0.0]
   - RemoveInvalidTF: {}
   - DeduplicateTF:
       cache_size: 10
