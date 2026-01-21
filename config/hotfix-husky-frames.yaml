@@ -1,4 +1,4 @@
-# Fix Clone frames in already generated files
+# Fix Husky frames in already generated files
 out_format: '{dirname}/{basename}{ext}'
 compression: lz4
 copy_params: True

@@ -1,0 +1,6 @@
+# Deduplicate dynamic TF messages. For some reason, the dedup filter did not work before sometimes.
+out_format: '{dirname}/{basename}{ext}'
+compression: lz4
+copy_params: True
+filters:
+  - DeduplicateTF: {}
