@@ -13,8 +13,8 @@ filters:
   - Remap:
       "imu_and_wheel_odom": "odom"
   - Copy:
-      "husky/velocity_controller/cmd_vel": "cmd_vel"
-      "husky/velocity_controller/odom": "odom_2d"
+      "husky_velocity_controller/cmd_vel": "cmd_vel"
+      "husky_velocity_controller/odom": "odom_2d"
   - Topics:
       exclude_topics:
         - /rosout

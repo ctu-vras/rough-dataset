@@ -1,0 +1,8 @@
+# Fix Husky frames in already generated files
+out_format: '{dirname}/{basename}{ext}'
+compression: lz4
+copy_params: True
+filters:
+  - Copy:
+    "husky_velocity_controller/cmd_vel": "cmd_vel"
+    "husky_velocity_controller/odom": "odom_2d"
