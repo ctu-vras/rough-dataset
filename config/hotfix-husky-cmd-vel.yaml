@@ -1,4 +1,4 @@
-# Fix Husky frames in already generated files
+# Fix Husky cmd_vel in already generated preproc files
 out_format: '{dirname}/{basename}{ext}'
 compression: lz4
 copy_params: True
