@@ -5,6 +5,7 @@
 rclone copy -P \
   --filter '- Ogre.log' --filter '- photodoc/**' \
   --filter '+ /*/*.postproc.*' --filter '+ /*/*/*.zip' --filter '+ /*/*/preview_*.mp4' --filter '+ /*/*.{csv,gpx,log,params,sdf,srt,urdf}' \
+  --filter '+ /*/*/resized/*.zip' --filter '+ /*/*/wildscenes_seg/*.zip' --filter '+ /*/*/wildscenes_vis/*.zip'  \
   --filter '+ /*/*.external_cams_blurred.bag' --filter '+ /*/*_gnss.zip' \
   --filter '- **' \
   --drive-chunk-size 512M --fast-list --transfers=6 --checkers=6 --buffer-size=75M \
