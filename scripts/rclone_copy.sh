@@ -10,6 +10,7 @@ rclone copy -P \
   --filter '+ /*/*.mask.pbm' --filter '+ /*/*.mask.png' \
   --filter '+ /*/*/resized/*.zip' --filter '+ /*/*/wildscenes_seg/*.zip' --filter '+ /*/*/wildscenes_vis/*.zip'  \
   --filter '+ /*/*.external_cams_blurred.bag' --filter '+ /*/*_gnss.zip' \
+  --filter '+ /calib/**' \
   --filter '- **' \
   --drive-chunk-size 512M --fast-list --transfers=6 --checkers=6 --buffer-size=75M \
   . gdrive:ROUGH/
