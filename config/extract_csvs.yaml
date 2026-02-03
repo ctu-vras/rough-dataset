@@ -20,13 +20,13 @@ filters:
       csv_file: '{bag_base}.poses.odom-base_link.csv'
   - ExportTFTrajectory:
       odom_frame_id: map
-      child_frame_id: os_sensor
+      child_frame_id: os_lidar
       trigger_frame_id: odom
       max_frequency: 20.0
       csv_file: '{bag_base}.poses.icp-lidar.csv'
   - ExportTFTrajectory:
       odom_frame_id: odom
-      child_frame_id: os_sensor
+      child_frame_id: os_lidar
       trigger_frame_id: base_link
       max_frequency: 20.0
       csv_file: '{bag_base}.poses.odom-lidar.csv'
