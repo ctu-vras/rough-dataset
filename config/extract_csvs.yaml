@@ -134,7 +134,7 @@ filters:
       csv_file: '{bag_base}/mag.oak_imu_mag.csv'
 
   - ExportJointStatesToCSV:
-      topic: /oak/imu/mag
+      topic: /joint_states
       csv_file: '{bag_base}/joint_states.csv'
 
   - ExportAzimuthStatesToCSV:
