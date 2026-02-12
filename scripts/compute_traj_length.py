@@ -27,4 +27,5 @@ with open(sys.argv[1], 'r', newline='') as f:
 
 with open(sys.argv[1].replace('.csv', '.length'), 'w+') as f:
     f.write(str(int(traj_len)))
+    f.write('\n')
         
