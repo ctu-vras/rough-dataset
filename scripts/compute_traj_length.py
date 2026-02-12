@@ -21,8 +21,9 @@ with open(sys.argv[1], 'r', newline='') as f:
             pos = new_pos
         else:
             diff = np.linalg.norm(new_pos - pos)
-            if diff > 0.1 and diff < 1.0:
-                traj_len += diff
+            if diff > 0.1:
+                if diff < 1.0:
+                    traj_len += diff
                 pos = new_pos
 
 with open(sys.argv[1].replace('.csv', '.length'), 'w+') as f:
