@@ -3,8 +3,14 @@ copy_params: False
 filters:
   - TopicTypes:
       include_types:
+        - compass_msgs/Azimuth
         - geometry_msgs/TwistStamped
+        - gps_common/GPSFix
         - sensor_msgs/CameraInfo
+        - sensor_msgs/Imu
+        - sensor_msgs/JointState
+        - sensor_msgs/MagneticField
+        - sensor_msgs/NavSatFix
         - tf2_msgs/TFMessage
 
   - ExportTFTrajectory:
@@ -12,31 +18,31 @@ filters:
       child_frame_id: base_link
       trigger_frame_id: odom
       max_frequency: 20.0
-      csv_file: '{bag_base}.poses.icp-base_link.csv'
+      csv_file: '{bag_base}/poses.icp-base_link.csv'
   - ExportTFTrajectory:
       odom_frame_id: odom
       child_frame_id: base_link
       max_frequency: 20.0
-      csv_file: '{bag_base}.poses.odom-base_link.csv'
+      csv_file: '{bag_base}/poses.odom-base_link.csv'
   - ExportTFTrajectory:
       odom_frame_id: map
       child_frame_id: os_lidar
       trigger_frame_id: odom
       max_frequency: 20.0
-      csv_file: '{bag_base}.poses.icp-lidar.csv'
+      csv_file: '{bag_base}/poses.icp-lidar.csv'
   - ExportTFTrajectory:
       odom_frame_id: odom
       child_frame_id: os_lidar
       trigger_frame_id: base_link
       max_frequency: 20.0
-      csv_file: '{bag_base}.poses.odom-lidar.csv'
+      csv_file: '{bag_base}/poses.odom-lidar.csv'
   
   - ExportCmdVelToCSV:
       topic: cmd_vel_stamped
-      csv_file: '{bag_base}.cmd_vel.csv'
+      csv_file: '{bag_base}/cmd_vel.csv'
   
   - ExportFinalTFTreeToYAML:
-      yaml_file: '{bag_base}.transformations.yaml'
+      yaml_file: '{bag_base}/transformations.yaml'
       static_only: True
       transforms:
         - [base_link, base_footprint]
@@ -72,39 +78,80 @@ filters:
 
   - ExportCameraInfoToYAML:
       topic: /camera_fisheye_front/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_fisheye_front.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_fisheye_front.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_fisheye_rear/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_fisheye_rear.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_fisheye_rear.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_front/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_front.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_front.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_left/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_left.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_left.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_rear/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_rear.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_rear.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_right/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_right.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_right.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_up/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_up.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_up.yaml'
   - ExportCameraInfoToYAML:
       topic: /oak/left/camera_info
-      yaml_file: '{bag_base}.caminfo.oak_left.yaml'
+      yaml_file: '{bag_base}/caminfo.oak_left.yaml'
   - ExportCameraInfoToYAML:
       topic: /oak/right/camera_info
-      yaml_file: '{bag_base}.caminfo.oak_right.yaml'
+      yaml_file: '{bag_base}/caminfo.oak_right.yaml'
   - ExportCameraInfoToYAML:
       topic: /oak/rgb/camera_info
-      yaml_file: '{bag_base}.caminfo.oak_rgb.yaml'
+      yaml_file: '{bag_base}/caminfo.oak_rgb.yaml'
   - ExportCameraInfoToYAML:
       topic: /oak/stereo/camera_info
-      yaml_file: '{bag_base}.caminfo.oak_stereo.yaml'
+      yaml_file: '{bag_base}/caminfo.oak_stereo.yaml'
   - ExportCameraInfoToYAML:
       topic: /camera_front_thermo/camera_info
-      yaml_file: '{bag_base}.caminfo.camera_front_thermo.yaml'
+      yaml_file: '{bag_base}/caminfo.camera_front_thermo.yaml'
+
+  - ExportImuToCSV:
+      topic: /imu/data
+      csv_file: '{bag_base}/imu.imu_data.csv'
+  - ExportImuToCSV:
+      topic: /imu_unbiased/data
+      csv_file: '{bag_base}/imu.imu_unbiased_data.csv'
+  - ExportImuToCSV:
+      topic: /oak/imu/data
+      csv_file: '{bag_base}/imu.oak_imu_data.csv'
+  - ExportImuToCSV:
+      topic: /os_cloud_node/imu
+      csv_file: '{bag_base}/imu.os_cloud_node_imu.csv'
+
+  - ExportMagnetometerToCSV:
+      topic: /imu/mag
+      csv_file: '{bag_base}/mag.imu_mag.csv'
+  - ExportMagnetometerToCSV:
+      topic: /oak/imu/mag
+      csv_file: '{bag_base}/mag.oak_imu_mag.csv'
+
+  - ExportJointStatesToCSV:
+      topic: /oak/imu/mag
+      csv_file: '{bag_base}/joint_states.csv'
+
+  - ExportAzimuthStatesToCSV:
+      topic: /compass/true/enu/rad
+      csv_file: '{bag_base}/azimuth.compass.csv'
+  - ExportAzimuthStatesToCSV:
+      topic: /gnss/septentrio/azimuth
+      csv_file: '{bag_base}/azimuth.gnss_septentrio_azimuth.csv'
+
+  - ExportGNSSToCSV:
+      topic: /fix
+      csv_file: '{bag_base}/fix.fix.csv'
+  - ExportGNSSToCSV:
+      topic: /fix_detail
+      csv_file: '{bag_base}/fix.fix_detail.csv'
+  - ExportGNSSToCSV:
+      topic: /gnss/septentrio/fix_detail
+      csv_file: '{bag_base}/fix.gnss_septentrio_fix_detail.csv'
 
   - Drop: {}
