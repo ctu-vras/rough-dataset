@@ -6,7 +6,7 @@ import sys
 import numpy as np
 
 
-pos = np.array([0.0, 0.0, 0.0])
+pos = None
 traj_len = 0.0
 
 with open(sys.argv[1], 'r', newline='') as f:
@@ -17,10 +17,13 @@ with open(sys.argv[1], 'r', newline='') as f:
             float(row['ty']),
             float(row['tz']),
         ])
-        diff = np.linalg.norm(new_pos - pos)
-        if abs(diff) > 0.1:
-            traj_len += diff
+        if pos is None:
             pos = new_pos
+        else:
+            diff = np.linalg.norm(new_pos - pos)
+            if diff > 0.1 and diff < 1.0:
+                traj_len += diff
+                pos = new_pos
 
 with open(sys.argv[1].replace('.csv', '.length'), 'w+') as f:
     f.write(str(int(traj_len)))
