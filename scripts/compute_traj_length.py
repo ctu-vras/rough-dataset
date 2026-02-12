@@ -12,7 +12,11 @@ traj_len = 0.0
 with open(sys.argv[1], 'r', newline='') as f:
     reader = csv.DictReader(f)
     for row in reader:
-        new_pos = np.array([row['tx'], row['ty'], row['tz']])
+        new_pos = np.array([
+            float(row['tx']),
+            float(row['ty']),
+            float(row['tz']),
+        ])
         diff = np.linalg.norm(new_pos - pos)
         if abs(diff) > 0.1:
             traj_len += diff
