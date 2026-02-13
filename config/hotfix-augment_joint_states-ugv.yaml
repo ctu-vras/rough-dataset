@@ -1,0 +1,9 @@
+# Augments joint states with velocity and currents from other topics
+out_format: '{dirname}/{basename}{ext}'
+compression: lz4
+copy_params: True
+filters:
+  - NiftiAugmentJointStates:
+      joint_states_topic: joint_states
+  - NiftiAugmentJointStates:
+      joint_states_topic: filtered_joint_states

@@ -36,4 +36,8 @@ filters:
         - /camera_up/image_color/compressed
       frame_id: camera_4
       include_tags: [ "extra_bag" ]
+  - NiftiAugmentJointStates:
+      joint_states_topic: joint_states
+  - NiftiAugmentJointStates:
+      joint_states_topic: filtered_joint_states
   - DeduplicateTF: {}

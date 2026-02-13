@@ -1,0 +1,14 @@
+out_format: '{bag_base}.postproc{ext}'
+compression: lz4
+filters:
+  - AddSubtitles:
+      subtitles_file: '{bag_base}.srt'
+      topic: /commentary
+  - RemovePasswordsFromParams: {}
+  - StampTwist:
+      source_topic: "/cmd_vel"
+  - NiftiAugmentJointStates:
+      joint_states_topic: joint_states
+  - NiftiAugmentJointStates:
+      joint_states_topic: filtered_joint_states
+  - DeduplicateTF: {}
