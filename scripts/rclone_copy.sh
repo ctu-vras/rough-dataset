@@ -5,9 +5,10 @@
 rclone copy -P \
   --filter '- Ogre.log' --filter '- photodoc/**' --filter '- /*/*_????-??-??-??-??-??.no_sensors.bag.params' --filter '- tmp/**' --filter '- /*/*preproc*' \
   --filter '+ /*/*.postproc.*' --filter '+ /*/*/*compressed.zip' --filter '+ /*/*/*compressedDepth.zip' --filter '+ /*/*/points_filtered.zip' \
-  --filter '+ /*/*/preview_*.mp4' --filter '+ /*/*.{csv,gpx,log,params,sdf,srt,urdf}' --filter '+ /*/*/*.{csv,length}' \
+  --filter '+ /*/*/preview_*.mp4' --filter '+ /*/*.{csv,gpx,log,md,params,sdf,srt,urdf}' --filter '+ /*/*/*.{csv,length}' \
   --filter '+ /*/*/*.caminfo.*.yaml' --filter '+ /*/*/*.calib.yaml' --filter '+ /*/*/*.transformations.yaml' \
   --filter '+ /*/*.mask.pbm' --filter '+ /*/*.mask.png' \
+  --filter '+ /README.md' \
   --filter '+ /*/*/resized/*.zip' --filter '+ /*/*/wildscenes_seg/*.zip' --filter '+ /*/*/wildscenes_vis/*.zip'  \
   --filter '+ /*/*.external_cams_blurred.bag' --filter '+ /*/*_gnss.zip' \
   --filter '+ /calib/**' \
