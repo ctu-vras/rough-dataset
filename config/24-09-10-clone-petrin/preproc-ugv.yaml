@@ -35,40 +35,38 @@ filters:
         - /camera_up/camera_info
         - /camera_up/image_color/compressed
       frame_id: pylon_camera_up
-  - Transforms:
-      change:
-        camera_front:
-          camera_0:
-            child_frame_id: pylon_camera_front
-        camera_left:
-          camera_3:
-            child_frame_id: pylon_camera_left
-        camera_rear:
-          camera_2:
-            child_frame_id: pylon_camera_rear
-        camera_right:
-          camera_1:
-            child_frame_id: pylon_camera_right
-        camera_top:
-          pylon_camera_up:
-            frame_id: camera_up
-          camera_4:
-            frame_id: camera_up
-            child_frame_id: pylon_camera_up
+  - RecomputeStaticTFFromRobotModel:
+      description_file: "{dirname}/clone.urdf"
+      add_tags: [ "recomputed" ]
   - UpdateParams:
       update:
-        parts_config:
+        parts_config: &parts_config
           has_top_box_lora_ant: False
           has_top_box_l_wifi_ant: False
           has_top_box_r_wifi_ant: False
           has_rollcage: True
+          gps_antenna_setup: 'rev1'
+          gps_antenna_height: 0.4
+          top_box_j_x: 0.514
+        dynamic_robot_model_server:
+          <<: *parts_config
+          dgps_aux_antenna_pos_x: 0.57
+          dgps_aux_antenna_pos_y: 0.1215
+          dgps_aux_antenna_pos_z: 0.35
+          dgps_main_antenna_pos_x: 0.03
+          dgps_main_antenna_pos_y: 0.02
+          dgps_main_antenna_pos_z: 0.4
+        calibrated_joints:
+          dgps_aux_antenna: [ 0.57, 0.1215, 0.37, 0.0, 0.0, 0.0, rear_right_box, dgps_aux_antenna ]
+          dgps_main_antenna: [ 0.03, 0.02, 0.4, 0.0, 0.0, 0.0, rear_right_box, dgps_main_antenna ]
+          ouster_holder: [ 0.04, 0.0, 0.005, 0.0, 0.0, 0.0, omnicam_top, ouster_holder ]
         omnicam_sensors_calib:
           transforms:
-            - [ 0.6, 0.1215, 0.02, 0.0, 0.0, 0.0, 1.0, rear_right_box, camera_front ]
-            - [ 0.3, 0.02, 0.02, 0.0, 0.0, 0.7071, -0.7071, rear_right_box, camera_right ]
+            - [ 0.63, 0.1215, 0.02, 0.0, 0.0, 0.0, 1.0, rear_right_box, camera_front ]
+            - [ 0.31, 0.01, 0.02, 0.0, 0.0, 0.7071, -0.7071, rear_right_box, camera_right ]
             - [ 0.02, 0.1215, 0.02, 0.0, 0.0, 1.0, 0.0, rear_right_box, camera_rear ]
-            - [ 0.3, 0.223, 0.02, 0.0, 0.0, 0.7071, 0.7071, rear_right_box, camera_left ]
-            - [ 0.46, 0.1215, 0.20, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_up ]
+            - [ 0.31, 0.233, 0.02, 0.0, 0.0, 0.7071, 0.7071, rear_right_box, camera_left ]
+            - [ 0.43, 0.1215, 0.24, 0.0, 0.7071, 0.0, -0.7071, rear_right_box, camera_up ]
   - UpdateRobotModel:
       urdf_file: "{dirname}/clone.urdf"
       param: nifti_robot_description

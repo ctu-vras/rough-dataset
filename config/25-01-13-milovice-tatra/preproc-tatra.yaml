@@ -137,6 +137,9 @@ filters:
       - frame_id: base_link
         child_frame_id: base_footprint
         transform: [0.0, 0.0, -0.545, 0.0, 0.0, 0.0]
+  - UpdateRobotModel:
+      urdf_file: "{dirname}/tatra.urdf"
+      param: robot_description
   - RemoveInvalidTF: {}
   - DeduplicateTF:
       cache_size: 10
