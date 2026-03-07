@@ -34,7 +34,7 @@ filters:
       include_topics:
         - /camera_up/image_color/anonymized_faces
         - /camera_up/image_color/compressed
-      frame_id: camera_4
+      frame_id: pylon_camera_up
       include_tags: [ "extra_bag" ]
   - NiftiAugmentJointStates:
       joint_states_topic: joint_states
