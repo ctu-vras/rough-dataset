@@ -9,7 +9,7 @@ filters:
   # Make sure we have TFs also for images that have stamps slightly before the start of the bag
   - FixHeader:
       include_tags: [ "copied_tf" ]
-      stamp_offset: -2.0
+      stamp_offset: -5.0
   - Remap:
       "/points_filtered_kontron": "/points_filtered"
   - Copy:

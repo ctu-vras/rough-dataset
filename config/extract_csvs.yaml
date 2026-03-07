@@ -137,10 +137,10 @@ filters:
       topic: /joint_states
       csv_file: '{bag_base}/joint_states.csv'
 
-  - ExportAzimuthStatesToCSV:
+  - ExportAzimuthToCSV:
       topic: /compass/true/enu/rad
       csv_file: '{bag_base}/azimuth.compass.csv'
-  - ExportAzimuthStatesToCSV:
+  - ExportAzimuthToCSV:
       topic: /gnss/septentrio/azimuth
       csv_file: '{bag_base}/azimuth.gnss_septentrio_azimuth.csv'
 
