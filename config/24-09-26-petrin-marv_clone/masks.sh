@@ -13,4 +13,4 @@ rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/masks-ugv.yaml" -- \
 
 rosrun cras_bag_tools filter_bag -c "${SCRIPT_DIR}/masks-marv.yaml" -- \
   marv_2024-09-26-13-46-51.preproc.bag \
-	marv_2024-09-26-13-54-43.preproc.bag
+  marv_2024-09-26-13-54-43.preproc.bag
