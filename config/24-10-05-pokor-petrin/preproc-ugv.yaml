@@ -3,6 +3,8 @@ compression: lz4
 filters:
   - MergeInitialStaticTf:
       add_tags: [ "copied_tf" ]
+      exclude_parents: ["oak-d-base-frame"]
+      exclude_children: ["camera_0", "camera_1", "camera_2", "camera_3", "camera_4"]
   - CopyFirstTfToBagStart:
       add_tags: [ "copied_tf" ]
   - RemovePasswordsFromParams: {}
