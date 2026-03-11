@@ -3,6 +3,7 @@ compression: lz4
 filters:
   - MergeInitialStaticTf:
       add_tags: [ "copied_tf" ]
+      exclude_children: ["camera_0", "camera_1", "camera_2", "camera_3", "camera_4"]
   - CopyFirstTfToBagStart:
       add_tags: [ "copied_tf" ]
   - RemovePasswordsFromParams: {}
@@ -10,6 +11,8 @@ filters:
   - FixHeader:
       include_tags: [ "copied_tf" ]
       stamp_offset: -5.0
+  - Transforms:
+      exclude_children: ["camera_0", "camera_1", "camera_2", "camera_3", "camera_4"]
   - FixHeader:
       include_topics:
         - /camera_front/camera_info
