@@ -11,7 +11,22 @@ filters:
   # Make sure we have TFs also for images that have stamps slightly before the start of the bag
   - FixHeader:
       include_tags: [ "copied_tf" ]
-      stamp_offset: -2.0
+      stamp_offset: -5.0
+  - Transforms:
+      exclude_parents: ["oak-d-base-frame"]
+      exclude_children: ["camera_0", "camera_1", "camera_2", "camera_3", "camera_4"]
+      change:
+        "oak":
+          oak_imu_frame:
+            translation:
+              x: 0.000000
+              y: -0.015
+              z: -0.013
+            rotation:
+              x: 0.000000
+              y: 0.707107
+              z: 0.000000
+              w: 0.707107
   - FixHeader:
       include_topics:
         - /camera_front/camera_info
