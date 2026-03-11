@@ -9,6 +9,10 @@ filters:
       subtitles_file: '{bag_base}.srt'
       topic: /commentary
   - RemovePasswordsFromParams: {}
+  # Remove section with external help to robot
+  - Drop:
+      include_tags: [ 'bag_base:ugv_2024-09-26-14-14-42' ]
+      include_time_ranges: [ [ 230, 250 ] ]
   # drop points_filtered from primary bag and use the ones from extra bag
   - Drop:
       include_topics:
