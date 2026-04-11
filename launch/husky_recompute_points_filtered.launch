@@ -48,7 +48,7 @@
               sensor/min_distance: 0.1
               sensor/max_distance: 50.0
               ignored_links/contains_test: [os_sensor, ouster_mount]
-              ignored_links/shadow_test: [os_sensor, ouster_mount, tower_cap, tower_camera_floor, tower, camera_0, camera_1, camera_2, camera_3]
+              ignored_links/shadow_test: [os_sensor, ouster_mount, tower_cap, tower_camera_floor, tower, camera_left_housing, camera_front_housing, camera_right_housing, camera_rear_housing]
               body_model/inflation/scale: 1.1
               body_model/inflation/padding: 0.01
               body_model/inflation/shadow_test/scale: 1.1
