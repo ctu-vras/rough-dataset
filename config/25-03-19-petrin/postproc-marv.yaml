@@ -15,6 +15,10 @@ filters:
       include_parents:
         - map
       include_tags: [ "extra_bag_3" ]
+  # Remove section with external help to robot
+  - Drop:
+      include_tags: [ 'bag_base:marv_2025-03-19-15-24-35' ]
+      include_time_ranges: [ [ 410, 430 ] ]
   - StampTwist:
       source_topic: "cmd_vel"
   - DropMessagesFromCSV:
